@@ -75,7 +75,7 @@ function chips(r, modo) {
   return `<div class="meta">
     <span class="chip chip--num">Reto n.º ${numero(retos, r.id)}</span>
     <span class="chip">${TIPO[r.tipo]}</span>
-    <span class="chip chip--tema">${esc(r.tema)}</span>
+    <span class="chip">${esc(r.tema)}</span>
     <span class="fecha">${esc(fechaLarga(r.fecha))}${modo === 'practica' ? ' · archivo' : ''}</span>
   </div>`;
 }
@@ -265,7 +265,6 @@ function resultadoHTML(r, jug, modoVista, hoy) {
           ${ordenes(p.factor) ? `<p class="pequeno">${esc(ordenes(p.factor))}</p>` : ''}
         </div>
       </div>
-      ${animar && !reducido() && jug.puntuacion >= 85 ? confetiHTML() : ''}
       ${escalaHTML(v, est, v.referencia)}
       <dl class="cifras">
         <div><dt>Tu estimación</dt><dd>${esc(formatear(est, 6))}<small>${esc(r.unidad)}</small></dd></div>
@@ -304,11 +303,6 @@ function resultadoHTML(r, jug, modoVista, hoy) {
         <div><dt>Jugados</dt><dd>${e.jugadas}</dd></div><div><dt>Media</dt><dd>${e.media ?? '–'}</dd></div>
       </dl>
     </section>`;
-}
-
-function confetiHTML() {
-  const cols = ['var(--sol)', 'var(--acento)', 'var(--menta)', 'var(--rosa)'];
-  return `<div class="confeti" aria-hidden="true">${Array.from({ length: 22 }, (_, i) => `<i style="--x:${(i * 4.7 + 3) % 98}%;--d:${(i % 7) * 0.08}s;--c:${cols[i % 4]}"></i>`).join('')}</div>`;
 }
 
 function ligarResultado(r, jug, modoVista) {
