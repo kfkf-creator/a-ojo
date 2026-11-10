@@ -13,7 +13,7 @@ Hace falta un servidor (aunque sea este mínimo) porque la web carga módulos ES
 ## Pruebas y validación
 
 ```bash
-npm test           # 17 pruebas unitarias (node:test, Node ≥ 18)
+npm test           # 18 pruebas unitarias (node:test, Node ≥ 18)
 npm run validar    # valida data/retos.json y comprueba las cuentas de cada explicación
 ```
 
@@ -26,7 +26,7 @@ En local (`localhost`) puedes adelantar el reloj: `http://localhost:5173/?ahora=
 | Ruta | Qué contiene |
 | --- | --- |
 | `index.html`, `css/estilos.css` | Página y estilos (modo claro/oscuro, movimiento reducido) |
-| `js/app.js` | Interfaz: rutas `#/` (hoy), `#/archivo`, `#/reto/<id>`, `#/ayuda` |
+| `js/app.js` | Interfaz: rutas `#/` (portada), `#/hoy`, `#/archivo`, `#/reto/<id>`, `#/ayuda` |
 | `js/numeros.js` | Lectura/formato de números en español y multiplicadores |
 | `js/puntuacion.js` | Puntuación logarítmica simétrica y frases del resultado |
 | `js/fechas.js` | Día civil de Madrid, cuenta atrás hasta medianoche |

@@ -355,30 +355,108 @@ function vistaArchivo(hoy) {
     ${estado(retos, hoy) !== 'hoy' && estado(retos, hoy) !== 'pronto' ? '<p class="aviso">No hay reto nuevo hoy: se han agotado los retos programados.</p>' : ''}`;
 }
 
+const ICONOS = {
+  archivo: '<svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><rect x="3" y="4" width="18" height="5" rx="1.500" fill="none" stroke="currentColor" stroke-width="1.800"/><path d="M5 9v9.500a1.500 1.500 0 0 0 1.500 1.500h11a1.500 1.500 0 0 0 1.500-1.500V9M10 13h4" fill="none" stroke="currentColor" stroke-width="1.800" stroke-linecap="round"/></svg>',
+  ayuda: '<svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.800"/><path d="M9.500 9.500a2.500 2.500 0 1 1 3.600 2.200c-.7.400-1.100.9-1.100 1.800M12 16.800v.1" fill="none" stroke="currentColor" stroke-width="1.800" stroke-linecap="round"/></svg>',
+};
+
+const ojoSVG = (px) => `<svg viewBox="0 0 32 32" width="${px}" height="${px}" aria-hidden="true" focusable="false"><path class="l-ojo" d="M2.500 16C7 9 11.500 6.500 16 6.500S25 9 29.500 16C25 23 20.500 25.500 16 25.500S7 23 2.500 16Z"/><circle class="l-iris" cx="16" cy="16" r="5.200"/><circle class="l-brillo" cx="18" cy="14" r="1.400"/></svg>`;
+
+function vistaInicio(hoy) {
+  const r = retoDeHoy(retos, hoy);
+  const jug = r && almacen.jugada(r.id);
+  const e = almacen.estadisticas(hoy);
+  const ant = pasados(retos, hoy);
+  const hechos = ant.filter((x) => almacen.jugada(x.id)).length;
+  const tarjetaHoy = r
+    ? `<a class="hoy-card" href="#/hoy">
+        <span class="kicker">Reto n.º ${numero(retos, r.id)} · ${esc(fechaLarga(r.fecha))}</span>
+        <span class="hoy-titulo">Reto de hoy</span>
+        <span class="hoy-meta">${esc(r.tema)} · ${TIPO[r.tipo]}</span>
+        <span class="hoy-cta">${jug ? `Ver mi resultado · ${jug.puntuacion}/100` : 'Jugar ahora'} <span aria-hidden="true">→</span></span>
+      </a>
+      ${jug ? `<p class="pequeno centro" style="margin-top:.7rem">Próximo reto en <span class="cuenta" id="cuenta">${cuentaAtras(msHastaMedianoche(ahora()))}</span> (medianoche de Madrid)</p>` : ''}`
+    : `<a class="hoy-card hoy-card--vacio" href="#/hoy">
+        <span class="hoy-titulo">Reto de hoy</span>
+        <span class="hoy-meta">Hoy no hay reto nuevo programado</span>
+        <span class="hoy-cta">Ver qué pasa <span aria-hidden="true">→</span></span>
+      </a>`;
+  $main.innerHTML = `
+    <section class="hero">
+      <div class="hero-logo">${ojoSVG(64)}</div>
+      <h1 class="hero-titulo" id="pregunta" tabindex="-1">A ojo</h1>
+      <p class="hero-sub">Un reto de estimación al día. Divide el problema, haz las cuentas y descubre cuánto te acercaste.</p>
+    </section>
+    ${tarjetaHoy}
+    <div class="accesos">
+      <a class="acceso" href="#/archivo"><span class="acceso-icono">${ICONOS.archivo}</span><span><strong>Archivo</strong><small>${ant.length ? `${ant.length} retos pasados · ${hechos} jugados` : 'Aún no hay retos pasados'}</small></span></a>
+      <a class="acceso" href="#/ayuda"><span class="acceso-icono">${ICONOS.ayuda}</span><span><strong>Cómo se juega</strong><small>Reglas, puntuación y cómo escribir números</small></span></a>
+    </div>
+    ${e.jugadas ? `<dl class="estad" aria-label="Tus estadísticas">
+      <div><dt>Racha</dt><dd>${e.actual}</dd></div><div><dt>Mejor</dt><dd>${e.mejor}</dd></div>
+      <div><dt>Jugados</dt><dd>${e.jugadas}</dd></div><div><dt>Media</dt><dd>${e.media ?? '–'}</dd></div></dl>` : ''}`;
+}
+
 function vistaAyuda() {
-  $main.innerHTML = `<div class="ayuda"><h1 class="pregunta" id="pregunta" tabindex="-1">Cómo se juega</h1>
-    <p>Cada día hay un minicaso. Se responde con <strong>un número</strong> y tienes <strong>un solo intento</strong>. No hay cronómetro: piensa, divide el problema en partes y haz las cuentas con la calculadora.</p>
-    <h2>Escribir el número</h2>
-    <p>En español: <code>1.500</code> es mil quinientos y <code>2,5</code> es dos y medio. Los botones <code>×1.000</code> y <code>×1.000.000</code> multiplican lo que has escrito. La coma siempre es decimal. Si algo es ambiguo (como <code>1.5</code>: ¿1,5 o 15?) o inválido, te pediré que lo corrijas antes de fijarlo; antes de confirmar siempre ves cómo se interpretará.</p>
-    <h2>Puntuación (0 a 100)</h2>
-    <p>Se mide cuántas <em>veces</em> te has desviado, por arriba o por abajo: estimar el doble o la mitad penaliza igual.</p>
-    <p><code>factor = máx(estimación ÷ referencia, referencia ÷ estimación)</code><br><code>puntuación = redondear(100 × máx(0, 1 − log₁₀(factor) ÷ 2))</code></p>
-    <table><thead><tr><th>Te desvías…</th><th>Puntos</th></tr></thead><tbody>
-      <tr><td>Nada</td><td>100</td></tr><tr><td>Factor 2 (el doble o la mitad)</td><td>85</td></tr>
-      <tr><td>Factor 10</td><td>50</td></tr><tr><td>Factor 100 o más</td><td>0</td></tr></tbody></table>
-    <h2>Dos tipos de reto</h2>
-    <p><strong>Estimación:</strong> la cifra de referencia es una respuesta razonada a partir de datos y supuestos explicados; puede haber otras razonables. <strong>Cálculo exacto:</strong> hay una única respuesta correcta.</p>
-    <h2>Tus datos</h2>
-    <p>No hay registro. Tu progreso, tu estimación y tu racha se guardan solo en este navegador; si borras los datos del sitio, se pierden.</p>
-    <h2>Racha y archivo</h2>
-    <p>La racha cuenta los días seguidos en que resuelves el reto del día ese mismo día. El día cambia a medianoche de Madrid. Los retos pasados están en el <a href="#/archivo">archivo</a>.</p>
-    <p><a class="boton" href="#/">Ir al reto de hoy</a></p></div>`;
+  const puntos = [['Cifra exacta', 'factor 1', 100], ['El doble o la mitad', 'factor 2', 85], ['El triple o un tercio', 'factor 3', 76], ['10 veces más o menos', 'factor 10', 50], ['100 veces o más', 'factor 100', 0]];
+  $main.innerHTML = `<div class="ayuda">
+    <h1 class="pregunta" id="pregunta" tabindex="-1">Cómo se juega</h1>
+    <p class="intro">Cada día hay un minicaso que se resuelve con un solo número. No hace falta saber el dato: se trata de razonar y acercarse. Sin cronómetro y con un único intento.</p>
+
+    <ol class="pasos-juego">
+      <li><span class="num-paso">1</span><div><h2>Piensa</h2><p>Lee el caso y sus condiciones. Divide el problema en partes y haz las cuentas con la calculadora si quieres.</p></div></li>
+      <li><span class="num-paso">2</span><div><h2>Estima</h2><p>Escribe tu número, mira cómo se interpretará y pulsa <strong>Fijar estimación</strong>. Después ya no se puede cambiar.</p></div></li>
+      <li><span class="num-paso">3</span><div><h2>Descubre</h2><p>Verás tu estimación y la cifra de referencia en una escala, y cuántas veces te desviaste.</p></div></li>
+      <li><span class="num-paso">4</span><div><h2>Aprende</h2><p>Una solución en pocos pasos: datos consultados, supuestos y cálculo, y qué supuesto mueve más la cifra.</p></div></li>
+    </ol>
+
+    <section class="bloque" aria-labelledby="h-punt">
+      <h2 id="h-punt">Cómo se puntúa</h2>
+      <p>De 0 a 100, según <em>cuántas veces</em> te desvías, por arriba o por abajo: estimar el doble y estimar la mitad puntúan igual.</p>
+      <ul class="barras">${puntos.map(([t, f, v]) => `<li><span class="barras-txt"><strong>${t}</strong><small>${f}</small></span><span class="barra"><span style="width:${v}%"></span></span><span class="barras-n">${v}</span></li>`).join('')}</ul>
+      <p class="pequeno">Fórmula: factor = máx(estimación ÷ referencia, referencia ÷ estimación) · puntos = redondear(100 × máx(0, 1 − log₁₀(factor) ÷ 2)).</p>
+    </section>
+
+    <section class="bloque" aria-labelledby="h-num">
+      <h2 id="h-num">Cómo escribir el número</h2>
+      <p>Escríbelo en español: el punto separa los miles y la coma los decimales. Antes de fijar siempre ves cómo se interpreta.</p>
+      <table>
+        <thead><tr><th>Escribes</th><th>Se entiende</th></tr></thead>
+        <tbody>
+          <tr><td><code>1.500</code></td><td>mil quinientos</td></tr>
+          <tr><td><code>2,5</code></td><td>dos y medio</td></tr>
+          <tr><td><code>3</code> y pulsas <code>×1.000.000</code></td><td>tres millones</td></tr>
+          <tr><td><code>1.5</code></td><td>ambiguo: te pedirá que lo corrijas</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="bloque" aria-labelledby="h-tipos">
+      <h2 id="h-tipos">Dos tipos de reto</h2>
+      <div class="dos">
+        <div class="mini"><h3>Estimación</h3><p>La cifra de referencia es una respuesta razonada con datos y supuestos explicados. Puede haber otras razonables.</p></div>
+        <div class="mini"><h3>Cálculo exacto</h3><p>Imaginas una situación y encuentras un cálculo sencillo. Solo hay una respuesta correcta.</p></div>
+      </div>
+    </section>
+
+    <section class="bloque" aria-labelledby="h-racha">
+      <h2 id="h-racha">Racha, archivo y tus datos</h2>
+      <ul class="lista-simple">
+        <li>Hay un reto nuevo cada día, igual para todos. El día cambia a <strong>medianoche de Madrid</strong>.</li>
+        <li>La <strong>racha</strong> cuenta los días seguidos en que resuelves el reto del día ese mismo día.</li>
+        <li>En el <a href="#/archivo">archivo</a> puedes practicar con retos pasados; no afecta a la racha.</li>
+        <li>No hay registro: tu progreso, tu estimación y tu racha se guardan solo en este navegador.</li>
+      </ul>
+    </section>
+
+    <p class="centro"><a class="boton primario-enlace" href="#/hoy">Ir al reto de hoy</a></p>
+  </div>`;
 }
 
 // ---------- Ruteo ----------
 function rutaActual() {
   const [pagina = '', id = ''] = location.hash.replace(/^#\/?/, '').split('/');
-  return { pagina: pagina || 'hoy', id };
+  return { pagina: pagina || 'inicio', id };
 }
 
 function render() {
@@ -386,17 +464,18 @@ function render() {
   diaMostrado = hoy;
   $avisos.innerHTML = '';
   const { pagina, id } = rutaActual();
-  if (pagina === 'hoy') {
+  if (pagina === 'inicio') vistaInicio(hoy);
+  else if (pagina === 'hoy') {
     const r = retoDeHoy(retos, hoy);
     if (r) vistaReto(r, hoy); else vistaSinReto(estado(retos, hoy), hoy);
   } else if (pagina === 'archivo') vistaArchivo(hoy);
   else if (pagina === 'ayuda') vistaAyuda();
   else if (pagina === 'reto') {
     const r = retos.find((x) => x.id === id);
-    if (r && r.fecha === hoy) { location.replace('#/'); return; }
+    if (r && r.fecha === hoy) { location.replace('#/hoy'); return; }
     if (r && r.fecha < hoy) vistaReto(r, hoy);
     else $main.innerHTML = '<div class="vacio"><h1 class="pregunta" id="pregunta" tabindex="-1">Ese reto no existe (o aún no toca)</h1><a class="boton" href="#/archivo">Ir al archivo</a></div>';
-  } else $main.innerHTML = '<div class="vacio"><h1 class="pregunta" id="pregunta" tabindex="-1">Página no encontrada</h1><a class="boton" href="#/">Ir al reto de hoy</a></div>';
+  } else $main.innerHTML = '<div class="vacio"><h1 class="pregunta" id="pregunta" tabindex="-1">Página no encontrada</h1><a class="boton" href="#/hoy">Ir al reto de hoy</a></div>';
   cabecera(hoy);
   // al cambiar de página, el foco va al título
   if (!animar && lastHash !== location.hash) document.getElementById('pregunta')?.focus({ preventScroll: true });
@@ -412,7 +491,7 @@ function tick() {
   if (hoy !== diaMostrado && !$avisos.firstChild) {
     $avisos.innerHTML = '<div class="banner" role="status">Ha empezado un nuevo día en Madrid: hay reto nuevo. <button type="button" id="nuevo-dia">Ver el reto de hoy</button></div>';
     document.getElementById('nuevo-dia').addEventListener('click', () => {
-      if (location.hash && location.hash !== '#/') location.hash = '#/'; else render();
+      if (location.hash !== '#/hoy') location.hash = '#/hoy'; else render();
     });
   }
 }

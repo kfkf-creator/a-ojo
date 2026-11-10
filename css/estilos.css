@@ -50,8 +50,9 @@ a { color: var(--acento); text-underline-offset: 3px; }
 /* Cabecera */
 .cabecera { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem 1rem; padding: .9rem 1rem .4rem; max-width: 44rem; width: 100%; margin: 0 auto; }
 .logo { display: inline-flex; align-items: center; gap: .5rem; color: var(--tinta); text-decoration: none; font-size: 1.45rem; font-weight: 800; letter-spacing: -.02em; }
-.l-aro { fill: none; stroke: var(--acento); stroke-width: 3.2; }
-.l-punto { fill: var(--acento); }
+.l-ojo { fill: none; stroke: var(--acento); stroke-width: 2.6; stroke-linejoin: round; }
+.l-iris { fill: var(--acento); }
+.l-brillo { fill: var(--tarjeta); }
 .cabecera nav { display: flex; gap: .15rem; flex-wrap: wrap; flex-basis: 100%; margin-left: -.5rem; }
 @media (min-width: 40rem) { .cabecera nav { flex-basis: auto; margin-left: auto; } }
 .cabecera nav a { color: var(--tinta-2); text-decoration: none; padding: .4rem .75rem; border-radius: 99px; font-weight: 600; font-size: .95rem; min-height: 44px; display: inline-flex; align-items: center; }
@@ -204,3 +205,54 @@ button:active, .boton:active { transform: scale(.98); }
   html { scroll-behavior: auto; }
 }
 @media (max-width: 24rem) { .anillo { width: 6.6rem; height: 6.6rem; } .anillo .num { font-size: 2.2rem; } }
+
+/* Portada */
+.centro { text-align: center; }
+.hero { text-align: center; padding: 1.6rem 0 1.4rem; }
+.hero-logo { display: inline-grid; place-items: center; width: 6.4rem; height: 6.4rem; border-radius: 50%; background: var(--acento-suave); margin-bottom: .8rem; }
+.hero-titulo { font-size: clamp(2.4rem, 11vw, 3.4rem); font-weight: 800; letter-spacing: -.03em; margin-bottom: .4rem; }
+.hero-titulo:focus { outline: none; }
+.hero-sub { max-width: 28rem; margin: 0 auto; color: var(--tinta-2); font-size: 1.1rem; }
+.hoy-card { display: grid; gap: .25rem; padding: 1.4rem 1.4rem 1.3rem; background: var(--acento); color: var(--acento-txt); border-radius: 22px; text-decoration: none; box-shadow: var(--sombra); transition: transform .12s, filter .15s; }
+.hoy-card:hover { filter: brightness(1.07); transform: translateY(-2px); }
+.hoy-card:active { transform: scale(.99); }
+.hoy-card .kicker { font-size: .85rem; opacity: .9; font-weight: 600; }
+.hoy-titulo { font-size: 1.8rem; font-weight: 800; letter-spacing: -.02em; line-height: 1.2; }
+.hoy-meta { opacity: .92; }
+.hoy-cta { margin-top: .8rem; justify-self: start; background: var(--acento-txt); color: var(--acento); font-weight: 800; padding: .55rem 1.1rem; border-radius: 99px; }
+.hoy-card--vacio { background: var(--tarjeta); color: var(--tinta); border: 1px solid var(--linea); }
+.hoy-card--vacio .hoy-cta { background: var(--acento); color: var(--acento-txt); }
+.accesos { display: grid; gap: .8rem; margin: 1rem 0; }
+@media (min-width: 34rem) { .accesos { grid-template-columns: 1fr 1fr; } }
+.acceso { display: flex; gap: .9rem; align-items: center; padding: 1rem; background: var(--tarjeta); border: 1px solid var(--linea); border-radius: var(--radio); color: var(--tinta); text-decoration: none; transition: border-color .15s, box-shadow .15s; }
+.acceso:hover { border-color: var(--acento); box-shadow: var(--sombra); }
+.acceso-icono { flex: none; display: grid; place-items: center; width: 3rem; height: 3rem; border-radius: 12px; background: var(--acento-suave); color: var(--acento); }
+.acceso strong { display: block; font-size: 1.1rem; }
+.acceso small { display: block; color: var(--tinta-2); font-size: .9rem; line-height: 1.35; }
+
+/* Cómo se juega */
+.intro { font-size: 1.15rem; color: var(--tinta-2); margin-bottom: 1.4rem; }
+.pasos-juego { list-style: none; padding: 0; margin: 0 0 1.6rem; display: grid; gap: .8rem; }
+@media (min-width: 34rem) { .pasos-juego { grid-template-columns: 1fr 1fr; } }
+.pasos-juego li { display: flex; gap: .9rem; padding: 1rem; background: var(--tarjeta); border: 1px solid var(--linea); border-radius: var(--radio); }
+.num-paso { flex: none; display: grid; place-items: center; width: 2.2rem; height: 2.2rem; border-radius: 50%; background: var(--acento); color: var(--acento-txt); font-weight: 800; }
+.pasos-juego h2 { font-size: 1.1rem; margin: 0 0 .25rem; }
+.pasos-juego p { margin: 0; color: var(--tinta-2); font-size: .98rem; }
+.ayuda .bloque { margin-bottom: 1.2rem; padding: 1.2rem; background: var(--tarjeta); border: 1px solid var(--linea); border-radius: 18px; }
+.ayuda .bloque h2 { margin-top: 0; }
+.barras { list-style: none; padding: 0; margin: 1rem 0; display: grid; gap: .65rem; }
+.barras li { display: grid; grid-template-columns: 1fr 2.6rem; grid-template-areas: "t n" "b b"; gap: .2rem .5rem; align-items: baseline; }
+.barras-txt { grid-area: t; }
+.barras-txt small { color: var(--tinta-2); margin-left: .4rem; }
+.barras-n { grid-area: n; text-align: right; font-weight: 800; font-variant-numeric: tabular-nums; }
+.barra { grid-area: b; display: block; height: 10px; background: var(--papel-2); border-radius: 99px; overflow: hidden; }
+.barra span { display: block; height: 100%; background: var(--acento); border-radius: 99px; min-width: 4px; }
+.dos { display: grid; gap: .8rem; }
+@media (min-width: 34rem) { .dos { grid-template-columns: 1fr 1fr; } }
+.mini { padding: .9rem 1rem; background: var(--papel-2); border-radius: 12px; }
+.mini h3 { margin-top: 0; }
+.mini p { margin: 0; font-size: .96rem; color: var(--tinta-2); }
+.lista-simple { margin: 0; padding-left: 1.2rem; }
+.lista-simple li { margin-bottom: .5rem; }
+.primario-enlace { background: var(--acento); border-color: var(--acento); color: var(--acento-txt); font-size: 1.1rem; min-height: 54px; padding-inline: 1.8rem; }
+.primario-enlace:hover { background: var(--acento); border-color: var(--acento); color: var(--acento-txt); filter: brightness(1.08); }
