@@ -1,0 +1,13 @@
+{
+  "name": "a-ojo",
+  "version": "1.0.0",
+  "description": "A ojo: un reto de estimación al día, en español.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "test": "node --test test/",
+    "validar": "node scripts/validar.mjs"
+  },
+  "engines": { "node": ">=18" }
+}

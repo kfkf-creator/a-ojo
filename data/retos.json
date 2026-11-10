@@ -1,0 +1,1121 @@
+[
+  {
+    "id": "parpadeos-dia",
+    "fecha": "2026-10-24",
+    "tipo": "estimacion",
+    "tema": "Cuerpo",
+    "estado": "verificado",
+    "enunciado": "¿Cuántas veces parpadea un adulto en un día normal?",
+    "condiciones": [
+      "Cuenta solo las horas en las que está despierto.",
+      "Un parpadeo es un cierre y una apertura completos de los párpados."
+    ],
+    "unidad": "parpadeos",
+    "referencia": 16320,
+    "rango": [
+      9600,
+      19200
+    ],
+    "pasos": [
+      {
+        "tipo": "supuesto",
+        "var": "ppm",
+        "valor": 17,
+        "texto": "En reposo, un adulto parpadea unas 17 veces por minuto."
+      },
+      {
+        "tipo": "supuesto",
+        "var": "horas",
+        "valor": 16,
+        "texto": "Pasa despierto unas 16 horas al día."
+      },
+      {
+        "tipo": "calculo",
+        "expr": "ppm*horas*60",
+        "valor": 16320,
+        "texto": "Parpadeos al día = veces por minuto × horas × 60 minutos."
+      }
+    ],
+    "clave": "La frecuencia de parpadeo. Se dispara al hablar y se desploma al leer o mirar una pantalla (unos 4,5 por minuto en el estudio); las horas despierto apenas mueven la cifra.",
+    "curiosidad": "Cada vez que lees esto, tus ojos ya han parpadeado varias veces sin que lo notes.",
+    "fuentes": [
+      {
+        "titulo": "Bentivoglio et al., «Analysis of blink rate patterns in normal subjects», Movement Disorders 12(6), 1997 (150 voluntarios sanos: 17 parpadeos/min en reposo, 26 conversando, 4,5 leyendo)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/9399231/",
+        "fecha": "1997"
+      }
+    ],
+    "version": 1,
+    "historial": []
+  },
+  {
+    "id": "pizza-gigante",
+    "fecha": "2026-10-25",
+    "tipo": "exacto",
+    "tema": "Objetos cotidianos",
+    "estado": "calculado",
+    "enunciado": "Una pizzería ofrece una pizza gigante de 90 cm de diámetro o pizzas individuales de 30 cm. ¿Cuántas individuales equivalen a la gigante?",
+    "condiciones": [
+      "Todas son círculos con el mismo grosor y los mismos ingredientes por cm²."
+    ],
+    "unidad": "pizzas individuales",
+    "referencia": 9,
+    "pasos": [
+      {
+        "tipo": "enunciado",
+        "var": "d_gigante",
+        "valor": 90,
+        "texto": "La pizza gigante mide 90 cm de diámetro."
+      },
+      {
+        "tipo": "enunciado",
+        "var": "d_indiv",
+        "valor": 30,
+        "texto": "Cada individual mide 30 cm de diámetro."
+      },
+      {
+        "tipo": "calculo",
+        "expr": "(d_gigante/d_indiv)**2",
+        "valor": 9,
+        "texto": "La cantidad de pizza depende del área, y el área crece con el cuadrado del diámetro: 3 veces más ancha son 9 veces más pizza (π se cancela)."
+      }
+    ],
+    "curiosidad": "La intuición dice «3». Por eso las pizzas grandes casi siempre salen a cuenta.",
+    "fuentes": [],
+    "version": 1,
+    "historial": []
+  },
+  {
+    "id": "barajas-dia",
+    "fecha": "2026-10-26",
+    "tipo": "estimacion",
+    "tema": "Logística",
+    "estado": "verificado",
+    "enunciado": "¿Cuántos pasajeros pasaron de media cada día por el aeropuerto Madrid-Barajas en 2025?",
+    "condiciones": [
+      "Cuenta cada embarque y cada desembarque: quien llega y luego se va cuenta dos veces.",
+      "Media de todos los días del año, sin distinguir verano de invierno."
+    ],
+    "unidad": "pasajeros al día",
+    "referencia": 186850,
+    "rango": [
+      150000,
+      250000
+    ],
+    "pasos": [
+      {
+        "tipo": "dato",
+        "var": "anual",
+        "valor": 68200000,
+        "texto": "Aena registró unos 68,2 millones de pasajeros en Madrid-Barajas durante 2025 (68.179.054)."
+      },
+      {
+        "tipo": "supuesto",
+        "var": "dias",
+        "valor": 365,
+        "texto": "Repartimos el año a partes iguales entre 365 días."
+      },
+      {
+        "tipo": "calculo",
+        "expr": "anual/dias",
+        "valor": 186850,
+        "texto": "Pasajeros al día = pasajeros del año ÷ días del año."
+      }
+    ],
+    "clave": "Qué cuenta como «pasajero». Como cada trayecto suma una vez en cada aeropuerto, olvidar uno de los dos sentidos divide la cifra entre dos. Un día de julio supera los 199.000 (6,17 millones ÷ 31).",
+    "fuentes": [
+      {
+        "titulo": "Aena: Madrid-Barajas cierra 2025 con cifras de tráfico récord",
+        "url": "https://www.aena.es/es/prensa/el-aeropuerto-adolfo-suarez-madrid-barajas-cierra-el-ano-2025-con-cifras---de-trafico-record.html",
+        "fecha": "2026-01-13"
+      }
+    ],
+    "version": 1,
+    "historial": []
+  },
+  {
+    "id": "luna-en-coche",
+    "fecha": "2026-10-27",
+    "tipo": "estimacion",
+    "tema": "Espacio",
+    "estado": "verificado",
+    "enunciado": "¿Cuántos días tardaría un coche en llegar a la Luna, yendo a velocidad de autopista sin parar y en línea recta?",
+    "condiciones": [
+      "Velocidad constante, de día y de noche, sin paradas ni repostajes.",
+      "Distancia medida entre centros, en línea recta."
+    ],
+    "unidad": "días",
+    "referencia": 133.47,
+    "pasos": [
+      {
+        "tipo": "dato",
+        "var": "dist",
+        "valor": 384400,
+        "texto": "La Luna está de media a 384.400 km de la Tierra."
+      },
+      {
+        "tipo": "supuesto",
+        "var": "vel",
+        "valor": 120,
+        "texto": "Velocidad de autopista: 120 km/h."
+      },
+      {
+        "tipo": "calculo",
+        "var": "horas",
+        "expr": "dist/vel",
+        "valor": 3203.33,
+        "texto": "Horas de viaje = distancia ÷ velocidad."
+      },
+      {
+        "tipo": "calculo",
+        "expr": "horas/24",
+        "valor": 133.47,
+        "texto": "Pasamos las horas a días dividiendo entre 24."
+      }
+    ],
+    "curiosidad": "Más de cuatro meses seguidos conduciendo. La luz hace el mismo viaje en poco más de un segundo.",
+    "fuentes": [
+      {
+        "titulo": "NASA: Moon Fact Sheet (distancia media)",
+        "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html",
+        "fecha": "2024"
+      }
+    ],
+    "version": 1,
+    "historial": [],
+    "rango": [
+      100,
+      180
+    ],
+    "clave": "La velocidad: a 90 km/h serían unos 178 días y a 130 km/h, unos 123. La distancia a la Luna es el dato que más gente subestima o sobrestima por un factor 10."
+  },
+  {
+    "id": "latidos-vida",
+    "fecha": "2026-10-28",
+    "tipo": "estimacion",
+    "tema": "Cuerpo",
+    "estado": "verificado",
+    "enunciado": "¿Cuántas veces late el corazón de una persona que vive 80 años?",
+    "condiciones": [
+      "Cuenta desde el nacimiento hasta los 80 años cumplidos."
+    ],
+    "unidad": "latidos",
+    "referencia": 2943360000,
+    "rango": [
+      2500000000,
+      3500000000
+    ],
+    "pasos": [
+      {
+        "tipo": "supuesto",
+        "var": "lpm",
+        "valor": 70,
+        "texto": "Pulsaciones medias a lo largo de la vida: 70 por minuto (en reposo un adulto está entre 60 y 100; los bebés laten mucho más rápido)."
+      },
+      {
+        "tipo": "supuesto",
+        "var": "anios",
+        "valor": 80,
+        "texto": "La vida dura 80 años."
+      },
+      {
+        "tipo": "calculo",
+        "var": "minutos",
+        "expr": "anios*365*24*60",
+        "valor": 42048000,
+        "texto": "Minutos de vida = años × 365 días × 24 horas × 60 minutos."
+      },
+      {
+        "tipo": "calculo",
+        "expr": "lpm*minutos",
+        "valor": 2943360000,
+        "texto": "Latidos = pulsaciones por minuto × minutos de vida."
+      }
+    ],
+    "clave": "Las pulsaciones por minuto. Cada 10 más o menos suman o restan unos 420 millones de latidos; la edad (80 vs. 90) mueve bastante menos.",
+    "curiosidad": "Casi 3.000 millones de latidos sin que tengas que pensar en uno solo.",
+    "fuentes": [
+      {
+        "titulo": "American Heart Association: pulsaciones normales en reposo en adultos, 60-100 por minuto (All About Heart Rate)",
+        "url": "https://www.heart.org/en/health-topics/high-blood-pressure/the-facts-about-high-blood-pressure/all-about-heart-rate-pulse",
+        "fecha": "2024"
+      }
+    ],
+    "version": 1,
+    "historial": []
+  },
+  {
+    "id": "folio-doblado",
+    "fecha": "2026-10-29",
+    "tipo": "exacto",
+    "tema": "Objetos cotidianos",
+    "estado": "calculado",
+    "enunciado": "Un folio mide 0,1 mm de grosor. Si pudieras doblarlo por la mitad 20 veces seguidas, ¿qué altura tendría el taco resultante?",
+    "condiciones": [
+      "Hipótesis ideal: es imposible en la práctica, pero cada doblez duplica exactamente las capas.",
+      "Ignora lo que ocupan los pliegues."
+    ],
+    "unidad": "metros",
+    "referencia": 104.86,
+    "pasos": [
+      {
+        "tipo": "enunciado",
+        "var": "grosor",
+        "valor": 0.1,
+        "texto": "Una capa mide 0,1 mm."
+      },
+      {
+        "tipo": "calculo",
+        "var": "capas",
+        "expr": "2**20",
+        "valor": 1048576,
+        "texto": "Cada doblez duplica las capas: tras 20 dobleces hay 2²⁰ capas."
+      },
+      {
+        "tipo": "calculo",
+        "var": "altura_mm",
+        "expr": "capas*grosor",
+        "valor": 104857.6,
+        "texto": "Altura en milímetros = capas × grosor de una capa."
+      },
+      {
+        "tipo": "calculo",
+        "expr": "altura_mm/1000",
+        "valor": 104.86,
+        "texto": "Dividimos entre 1.000 para pasar a metros."
+      }
+    ],
+    "curiosidad": "Con 10 dobleces sería un taco de 10 cm. Los 10 siguientes lo multiplican por 1.000: de la palma de una mano a un edificio de 30 plantas.",
+    "fuentes": [],
+    "version": 1,
+    "historial": []
+  },
+  {
+    "id": "plaza-mayor-concierto",
+    "fecha": "2026-10-30",
+    "tipo": "estimacion",
+    "tema": "Ciudades",
+    "estado": "secundaria",
+    "enunciado": "¿Cuántas personas caben de pie en la Plaza Mayor de Madrid en un concierto muy lleno?",
+    "condiciones": [
+      "Toda la plaza cuenta como útil: ignora escenario, farolas y terrazas.",
+      "De pie y apretadas, pero pudiendo respirar."
+    ],
+    "unidad": "personas",
+    "referencia": 48500,
+    "rango": [
+      30000,
+      60000
+    ],
+    "pasos": [
+      {
+        "tipo": "dato",
+        "var": "area",
+        "valor": 12126,
+        "texto": "La plaza mide unos 129 × 94 m: 12.126 m²."
+      },
+      {
+        "tipo": "supuesto",
+        "var": "densidad",
+        "valor": 4,
+        "texto": "En un concierto muy lleno caben unas 4 personas por m²."
+      },
+      {
+        "tipo": "calculo",
+        "expr": "area*densidad",
+        "valor": 48500,
+        "texto": "Personas = superficie × densidad."
+      }
+    ],
+    "clave": "La densidad. Con 2,5 personas por m² hay holgura (≈30.000); con 5 es una marea humana (≈60.000). La superficie está medida y mueve mucho menos.",
+    "curiosidad": "Aun así, el aforo real de un evento allí es mucho menor que lo que sale en cualquier cálculo geométrico: hay vallas, accesos de emergencia y escenario.",
+    "fuentes": [
+      {
+        "titulo": "Plaza Mayor (Madrid): dimensiones, Wikipedia",
+        "url": "https://es.wikipedia.org/wiki/Plaza_Mayor_de_Madrid",
+        "fecha": "2026-11"
+      }
+    ],
+    "version": 1,
+    "historial": []
+  },
+  {
+    "id": "lavadoras-trailer",
+    "fecha": "2026-10-31",
+    "tipo": "exacto",
+    "tema": "Logística",
+    "estado": "calculado",
+    "enunciado": "Un tráiler tiene una caja de 13,6 × 2,45 × 2,7 m. Cada lavadora embalada es un bloque de 0,6 × 0,6 × 0,85 m. ¿Cuántas caben?",
+    "condiciones": [
+      "Siempre de pie (el lado de 0,85 m, en vertical) y todas con la misma orientación.",
+      "Solo lavadoras enteras, apiladas en capas sin huecos intermedios."
+    ],
+    "unidad": "lavadoras",
+    "referencia": 264,
+    "pasos": [
+      {
+        "tipo": "calculo",
+        "var": "largo",
+        "expr": "floor(13.6/0.6)",
+        "valor": 22,
+        "texto": "A lo largo caben 13,6 ÷ 0,6 = 22,7 → 22 lavadoras enteras."
+      },
+      {
+        "tipo": "calculo",
+        "var": "ancho",
+        "expr": "floor(2.45/0.6)",
+        "valor": 4,
+        "texto": "A lo ancho caben 2,45 ÷ 0,6 = 4,08 → 4."
+      },
+      {
+        "tipo": "calculo",
+        "var": "capas",
+        "expr": "floor(2.7/0.85)",
+        "valor": 3,
+        "texto": "En altura caben 2,7 ÷ 0,85 = 3,18 → 3 capas."
+      },
+      {
+        "tipo": "calculo",
+        "expr": "largo*ancho*capas",
+        "valor": 264,
+        "texto": "Total = filas × columnas × capas."
+      }
+    ],
+    "curiosidad": "Dividir volúmenes (≈ 89 m³ ÷ 0,31 m³ ≈ 288) sobreestima: en cada dirección se pierde un trozo que no da para otra lavadora.",
+    "fuentes": [],
+    "version": 1,
+    "historial": []
+  },
+  {
+    "id": "canica-luna",
+    "fecha": "2026-11-01",
+    "tipo": "estimacion",
+    "tema": "Espacio",
+    "estado": "verificado",
+    "enunciado": "Imagina que la Tierra es una canica de 1 cm de diámetro. ¿A qué distancia estaría la Luna, con la misma escala?",
+    "condiciones": [
+      "Usa la misma escala para el tamaño y para la distancia."
+    ],
+    "unidad": "centímetros",
+    "referencia": 30.13,
+    "pasos": [
+      {
+        "tipo": "dato",
+        "var": "dist",
+        "valor": 384400,
+        "texto": "La Luna está de media a 384.400 km de la Tierra."
+      },
+      {
+        "tipo": "dato",
+        "var": "diam",
+        "valor": 12756,
+        "texto": "El diámetro ecuatorial de la Tierra es de unos 12.756 km."
+      },
+      {
+        "tipo": "calculo",
+        "expr": "dist/diam",
+        "valor": 30.13,
+        "texto": "Con la canica de 1 cm, la distancia en cm es el número de «Tierras» que caben en el camino: distancia ÷ diámetro."
+      }
+    ],
+    "clave": "No hay supuestos: solo dos medidas. Lo que engaña es la intuición, que suele colocar la Luna a 5-10 cm cuando entre ambas cabrían unas 30 Tierras alineadas.",
+    "fuentes": [
+      {
+        "titulo": "NASA: Moon Fact Sheet (distancia media y radio ecuatorial de la Tierra, 6.378,1 km)",
+        "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html",
+        "fecha": "2024"
+      }
+    ],
+    "version": 1,
+    "historial": []
+  },
+  {
+    "id": "turismos-en-fila",
+    "fecha": "2026-11-02",
+    "tipo": "estimacion",
+    "tema": "Logística",
+    "estado": "secundaria",
+    "enunciado": "Si pusieras en fila todos los turismos de España, parachoques con parachoques, ¿cuántos kilómetros mediría la cola?",
+    "condiciones": [
+      "Solo turismos (ni furgonetas, ni camiones, ni motos).",
+      "Sin huecos entre coches."
+    ],
+    "unidad": "kilómetros",
+    "referencia": 113400,
+    "rango": [
+      105000,
+      120000
+    ],
+    "pasos": [
+      {
+        "tipo": "dato",
+        "var": "turismos",
+        "valor": 25200000,
+        "texto": "A finales de 2024 había unos 25,2 millones de turismos en el parque español (DGT)."
+      },
+      {
+        "tipo": "supuesto",
+        "var": "largo",
+        "valor": 4.5,
+        "texto": "Un turismo medio mide unos 4,5 m de largo."
+      },
+      {
+        "tipo": "calculo",
+        "expr": "turismos*largo/1000",
+        "valor": 113400,
+        "texto": "Kilómetros = coches × largo en metros ÷ 1.000."
+      }
+    ],
+    "clave": "El número de coches, que casi nadie sabe de memoria. Si lo estimas (algo más de medio coche por habitante), el largo medio apenas lo mueve un 5 %.",
+    "curiosidad": "Son casi tres vueltas a la Tierra por el ecuador (40.075 km).",
+    "fuentes": [
+      {
+        "titulo": "Instituto Aragonés de Estadística: Parque de vehículos 2024 (datos de la DGT)",
+        "url": "https://www.aragon.es/documents/d/guest/parque-de-vehiculos-2024",
+        "fecha": "2025"
+      }
+    ],
+    "version": 1,
+    "historial": []
+  },
+  {
+    "id": "campo-futbol-10k",
+    "fecha": "2026-11-03",
+    "tipo": "exacto",
+    "tema": "Objetos cotidianos",
+    "estado": "calculado",
+    "enunciado": "Un campo de fútbol mide 105 × 68 m. ¿Cuántas vueltas al perímetro del césped hay que dar para correr 10 km?",
+    "condiciones": [
+      "Corres pegado a las líneas, siguiendo el rectángulo exacto, con esquinas en ángulo recto.",
+      "Cuenta las vueltas con decimales."
+    ],
+    "unidad": "vueltas",
+    "referencia": 28.9,
+    "pasos": [
+      {
+        "tipo": "calculo",
+        "var": "perim",
+        "expr": "2*(105+68)",
+        "valor": 346,
+        "texto": "Perímetro = 2 × (largo + ancho) = 346 m."
+      },
+      {
+        "tipo": "calculo",
+        "expr": "10000/perim",
+        "valor": 28.9,
+        "texto": "10 km son 10.000 m; vueltas = 10.000 ÷ 346."
+      }
+    ],
+    "curiosidad": "Casi 29 vueltas: más de las que muchos aficionados creen que dan «de media» los jugadores en un partido, que corren unos 10-12 km.",
+    "fuentes": [],
+    "version": 1,
+    "historial": []
+  },
+  {
+    "id": "agua-hogares-piscinas",
+    "fecha": "2026-11-04",
+    "tipo": "estimacion",
+    "tema": "Consumo",
+    "estado": "verificado",
+    "enunciado": "¿Cuántas piscinas olímpicas se llenarían con el agua que gastan al año todos los hogares de España?",
+    "condiciones": [
+      "Piscina olímpica: 50 × 25 × 2 m = 2.500 m³.",
+      "Solo uso doméstico, datos de 2024."
+    ],
+    "unidad": "piscinas olímpicas",
+    "referencia": 915700,
+    "rango": [
+      716000,
+      1070000
+    ],
+    "pasos": [
+      {
+        "tipo": "dato",
+        "var": "litros",
+        "valor": 128,
+        "texto": "Cada habitante gasta en casa unos 128 litros al día (INE, 2024)."
+      },
+      {
+        "tipo": "dato",
+        "var": "poblacion",
+        "valor": 49000000,
+        "texto": "España tiene unos 49 millones de habitantes."
+      },
+      {
+        "tipo": "calculo",
+        "var": "m3",
+        "expr": "litros*poblacion*365/1000",
+        "valor": 2289280000,
+        "texto": "Metros cúbicos al año = litros × habitantes × 365 días ÷ 1.000 litros por m³ (≈ 2.289 hm³; el INE contabiliza 2.284 hm³)."
+      },
+      {
+        "tipo": "calculo",
+        "expr": "m3/2500",
+        "valor": 915700,
+        "texto": "Piscinas = metros cúbicos ÷ 2.500 m³ por piscina."
+      }
+    ],
+    "clave": "El consumo por persona. Entre 100 y 150 litros al día el resultado va de unas 720.000 a 1,07 millones de piscinas; la población la conoces bastante bien.",
+    "curiosidad": "Unas 2.500 piscinas olímpicas cada día solo en duchas, cisternas, grifos y lavadoras.",
+    "fuentes": [
+      {
+        "titulo": "INE: Estadística sobre el suministro y saneamiento del agua, 2024",
+        "url": "https://www.ine.es/dyngs/Prensa/ESSA2024.htm",
+        "fecha": "2026-07-02"
+      }
+    ],
+    "version": 1,
+    "historial": []
+  },
+  {
+    "id": "sangre-dia",
+    "fecha": "2026-11-05",
+    "tipo": "estimacion",
+    "tema": "Cuerpo",
+    "estado": "verificado",
+    "enunciado": "¿Cuántos litros de sangre bombea al día el corazón de un adulto en reposo?",
+    "condiciones": [
+      "Cuenta toda la sangre que sale del corazón en 24 horas, aunque sea la misma que vuelve a pasar una y otra vez."
+    ],
+    "unidad": "litros",
+    "referencia": 7056,
+    "rango": [
+      5800,
+      8600
+    ],
+    "pasos": [
+      {
+        "tipo": "supuesto",
+        "var": "vol",
+        "valor": 70,
+        "texto": "Cada latido expulsa unos 70 mL de sangre (cifra coherente con los ~5 L/min de gasto cardíaco medio en reposo que citan las fuentes)."
+      },
+      {
+        "tipo": "supuesto",
+        "var": "lpm",
+        "valor": 70,
+        "texto": "El corazón late unas 70 veces por minuto."
+      },
+      {
+        "tipo": "calculo",
+        "var": "ml_min",
+        "expr": "vol*lpm",
+        "valor": 4900,
+        "texto": "Por minuto: 70 mL × 70 = 4.900 mL, unos 5 litros."
+      },
+      {
+        "tipo": "calculo",
+        "expr": "ml_min*60*24/1000",
+        "valor": 7056,
+        "texto": "Al día: mL por minuto × 60 minutos × 24 horas ÷ 1.000 mL por litro."
+      }
+    ],
+    "clave": "El volumen por latido y las pulsaciones se multiplican, así que un error del 20 % en cualquiera arrastra la cifra final en un 20 %.",
+    "curiosidad": "El cuerpo contiene solo unos 5 litros de sangre: se recircula toda más de mil veces al día.",
+    "fuentes": [
+      {
+        "titulo": "StatPearls: Physiology, Cardiac Index (gasto cardíaco en reposo: 4-8 L/min, media ≈ 5 L/min)",
+        "url": "https://www.statpearls.com/sp/md/91/18893/",
+        "fecha": "2024"
+      }
+    ],
+    "version": 1,
+    "historial": []
+  },
+  {
+    "id": "sol-tierras",
+    "fecha": "2026-11-06",
+    "tipo": "estimacion",
+    "tema": "Espacio",
+    "estado": "verificado",
+    "enunciado": "¿Cuántas Tierras caben dentro del Sol?",
+    "condiciones": [
+      "Compara volúmenes, como si ambos fueran esferas perfectas.",
+      "No te preocupes por los huecos entre esferas."
+    ],
+    "unidad": "Tierras",
+    "referencia": 1302000,
+    "pasos": [
+      {
+        "tipo": "dato",
+        "var": "ratio",
+        "valor": 109.2,
+        "texto": "El radio del Sol es unas 109,2 veces el de la Tierra (NASA)."
+      },
+      {
+        "tipo": "calculo",
+        "expr": "ratio**3",
+        "valor": 1302000,
+        "texto": "El volumen de una esfera crece con el cubo del radio: 109,2 × 109,2 × 109,2 ≈ 1,3 millones (la NASA indica 1.304.000)."
+      }
+    ],
+    "curiosidad": "Si has pensado en unos cientos, has multiplicado por 3 en lugar de elevar al cubo.",
+    "fuentes": [
+      {
+        "titulo": "NASA: Sun Fact Sheet (radio medio 109,2 veces el terrestre; volumen 1.304.000 veces)",
+        "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/sunfact.html",
+        "fecha": "2024"
+      }
+    ],
+    "version": 1,
+    "historial": [],
+    "rango": [
+      1000000,
+      1500000
+    ],
+    "clave": "El cubo. Si el Sol fuese «solo» 100 veces más ancho serían 1 millón de Tierras; con 120, 1,7 millones. Lo que más falla es multiplicar por 3 en lugar de elevar al cubo."
+  },
+  {
+    "id": "madrid-fila-india",
+    "fecha": "2026-11-07",
+    "tipo": "estimacion",
+    "tema": "Ciudades",
+    "estado": "verificado",
+    "enunciado": "Si todas las personas empadronadas en la ciudad de Madrid se pusieran en fila india, ¿cuántos kilómetros mediría la fila?",
+    "condiciones": [
+      "Solo la ciudad de Madrid, no la Comunidad ni el área metropolitana.",
+      "Una persona detrás de otra, sin dejar huecos grandes."
+    ],
+    "unidad": "kilómetros",
+    "referencia": 1765,
+    "rango": [
+      1400,
+      2100
+    ],
+    "pasos": [
+      {
+        "tipo": "dato",
+        "var": "poblacion",
+        "valor": 3530000,
+        "texto": "A 1 de enero de 2025 había 3.527.924 personas empadronadas en la ciudad: unos 3,53 millones."
+      },
+      {
+        "tipo": "supuesto",
+        "var": "sep",
+        "valor": 0.5,
+        "texto": "Cada persona ocupa unos 0,5 m de fila."
+      },
+      {
+        "tipo": "calculo",
+        "expr": "poblacion*sep/1000",
+        "valor": 1765,
+        "texto": "Kilómetros = personas × metros por persona ÷ 1.000."
+      }
+    ],
+    "clave": "La población (cada 100.000 habitantes suman o restan 50 km) y los metros por persona: entre 0,4 y 0,6 m la fila mide de 1.400 a 2.100 km.",
+    "curiosidad": "La fila llegaría más lejos que Roma (≈ 1.360 km en línea recta).",
+    "fuentes": [
+      {
+        "titulo": "Ayuntamiento de Madrid: la población de la ciudad supera por primera vez los 3,5 millones",
+        "url": "https://diario.madrid.es/blog/notas-de-prensa/la-poblacion-de-la-ciudad-de-madrid-supera-por-primera-vez-los-35-millones-de-habitantes-la-cifra-mas-alta-de-su-historia/",
+        "fecha": "2025"
+      }
+    ],
+    "version": 1,
+    "historial": []
+  },
+  {
+    "id": "arroz-casilla-40",
+    "fecha": "2026-11-08",
+    "tipo": "exacto",
+    "tema": "Objetos cotidianos",
+    "estado": "calculado",
+    "enunciado": "Pones 1 grano de arroz en la primera casilla de un tablero de ajedrez, 2 en la segunda, 4 en la tercera, y sigues duplicando. ¿Cuántos granos pones en la casilla 40?",
+    "condiciones": [
+      "Pregunta solo por esa casilla, no por el total acumulado."
+    ],
+    "unidad": "granos",
+    "referencia": 549755813888,
+    "pasos": [
+      {
+        "tipo": "enunciado",
+        "var": "primera",
+        "valor": 1,
+        "texto": "La primera casilla lleva 1 grano."
+      },
+      {
+        "tipo": "calculo",
+        "var": "dup",
+        "expr": "40-1",
+        "valor": 39,
+        "texto": "Para llegar a la casilla 40 se duplica 39 veces."
+      },
+      {
+        "tipo": "calculo",
+        "expr": "primera*2**dup",
+        "valor": 549755813888,
+        "texto": "Granos = 1 × 2³⁹ = 549.755.813.888 (más de medio billón en una sola casilla)."
+      }
+    ],
+    "curiosidad": "Y el tablero tiene 64 casillas: en la última habría 2⁶³ granos, unos 9 trillones.",
+    "fuentes": [],
+    "version": 1,
+    "historial": []
+  },
+  {
+    "id": "iss-amaneceres",
+    "fecha": "2026-11-09",
+    "tipo": "estimacion",
+    "tema": "Espacio",
+    "estado": "verificado",
+    "enunciado": "¿Cuántos amaneceres ve en un día un astronauta de la Estación Espacial Internacional?",
+    "condiciones": [
+      "Un día de 24 horas.",
+      "Cuenta cada vez que sale el Sol desde su ventana."
+    ],
+    "unidad": "amaneceres",
+    "referencia": 15.65,
+    "rango": [
+      14,
+      17
+    ],
+    "pasos": [
+      {
+        "tipo": "dato",
+        "var": "periodo",
+        "valor": 92,
+        "texto": "La ISS tarda unos 92 minutos en dar una vuelta a la Tierra (NASA)."
+      },
+      {
+        "tipo": "calculo",
+        "var": "min_dia",
+        "expr": "24*60",
+        "valor": 1440,
+        "texto": "Un día tiene 1.440 minutos."
+      },
+      {
+        "tipo": "calculo",
+        "expr": "min_dia/periodo",
+        "valor": 15.65,
+        "texto": "Amaneceres = minutos del día ÷ minutos por vuelta: una vuelta, un amanecer (15 o 16 según el día, como indica la NASA)."
+      }
+    ],
+    "clave": "El periodo orbital: es la única medida y la intuición («una vez al día, como en el suelo») falla por un factor 15.",
+    "curiosidad": "Por eso la tripulación se guía por un horario fijo (UTC) y no por la luz de la ventana.",
+    "fuentes": [
+      {
+        "titulo": "NASA: la ISS da una vuelta a la Tierra cada 92 minutos; 15 o 16 amaneceres y atardeceres al día",
+        "url": "https://www.nasa.gov/?p=436076",
+        "fecha": "2024"
+      }
+    ],
+    "version": 1,
+    "historial": []
+  },
+  {
+    "id": "habitaciones-champu",
+    "fecha": "2026-11-10",
+    "tipo": "estimacion",
+    "tema": "Consumo",
+    "estado": "secundaria",
+    "enunciado": "¿Cuántos botes de champú harían falta para dejar uno en cada habitación de los hoteles de España en una noche de julio?",
+    "condiciones": [
+      "«Hoteles» como los cuenta el INE: incluye hostales y pensiones, no apartamentos turísticos ni campings.",
+      "Un bote por habitación, una sola noche, con los alojamientos abiertos en julio de 2025."
+    ],
+    "unidad": "botes de champú",
+    "referencia": 906100,
+    "rango": [
+      600000,
+      1100000
+    ],
+    "pasos": [
+      {
+        "tipo": "dato",
+        "var": "alojamientos",
+        "valor": 17000,
+        "texto": "En julio de 2025 había unos 17.000 establecimientos hoteleros abiertos en España (16.968 según el INE)."
+      },
+      {
+        "tipo": "dato",
+        "var": "hab_por_aloj",
+        "valor": 53.3,
+        "texto": "Cada uno tenía de media unas 53 habitaciones: muchos pequeños (pensiones, hostales) y unos pocos hoteles muy grandes."
+      },
+      {
+        "tipo": "calculo",
+        "expr": "alojamientos*hab_por_aloj",
+        "valor": 906100,
+        "texto": "Botes = alojamientos × habitaciones por alojamiento (un bote por habitación)."
+      }
+    ],
+    "clave": "Las habitaciones por alojamiento. Si supones 30 salen ≈ 510.000 botes y si supones 100, ≈ 1,7 millones; el número de establecimientos es mucho más fácil de acotar.",
+    "curiosidad": "Habitaciones, plazas y pernoctaciones no son lo mismo: aquí solo cuentan las habitaciones, una sola noche.",
+    "fuentes": [
+      {
+        "titulo": "INE: Coyuntura Turística Hotelera, julio de 2025",
+        "url": "https://www.ine.es/dyngs/Prensa/CTH0725.htm",
+        "fecha": "2025-08"
+      },
+      {
+        "titulo": "Europa Press (vía Bolsamanía): «España no iguala los hoteles abiertos en julio…» (cifras de habitaciones)",
+        "url": "https://www.bolsamania.com/noticias/empresas/economia--espana-no-supera-los-hoteles-abiertos-en-prepandemia-durante-el-mes-de-julio-con-148-establecimientos-menos--20754615.html",
+        "fecha": "2025-08"
+      }
+    ],
+    "version": 1,
+    "historial": []
+  },
+  {
+    "id": "tabla-periodica-cuadricula",
+    "fecha": "2026-11-11",
+    "tipo": "exacto",
+    "tema": "Objetos cotidianos",
+    "estado": "calculado",
+    "enunciado": "Dibujas la tabla periódica como una cuadrícula de 18 columnas y 7 filas que ocupa una hoja A4 horizontal (297 × 210 mm). ¿Cuánto miden en total las líneas de la cuadrícula?",
+    "condiciones": [
+      "Cuenta también el borde exterior.",
+      "La cuadrícula llega hasta los cuatro bordes de la hoja."
+    ],
+    "unidad": "metros",
+    "referencia": 6.366,
+    "pasos": [
+      {
+        "tipo": "calculo",
+        "var": "vert",
+        "expr": "(18+1)*210",
+        "valor": 3990,
+        "texto": "Líneas verticales: 18 columnas necesitan 19 líneas (con el borde), de 210 mm cada una."
+      },
+      {
+        "tipo": "calculo",
+        "var": "hor",
+        "expr": "(7+1)*297",
+        "valor": 2376,
+        "texto": "Líneas horizontales: 7 filas necesitan 8 líneas, de 297 mm cada una."
+      },
+      {
+        "tipo": "calculo",
+        "expr": "(vert+hor)/1000",
+        "valor": 6.366,
+        "texto": "Suma en milímetros y paso a metros: 6.366 mm."
+      }
+    ],
+    "curiosidad": "El error clásico es contar 18 + 7 líneas: n casillas siempre necesitan n + 1 líneas.",
+    "fuentes": [],
+    "version": 1,
+    "historial": []
+  },
+  {
+    "id": "metro-madrid-dia",
+    "fecha": "2026-11-12",
+    "tipo": "estimacion",
+    "tema": "Ciudades",
+    "estado": "verificado",
+    "enunciado": "¿Cuántos viajes se hacen de media al día en el Metro de Madrid?",
+    "condiciones": [
+      "Media de todos los días de 2025: laborables, sábados y festivos.",
+      "Cuenta los viajes tal como los publica la Comunidad de Madrid (su nota no detalla cómo trata los transbordos)."
+    ],
+    "unidad": "viajes al día",
+    "referencia": 2019000,
+    "rango": [
+      1500000,
+      2500000
+    ],
+    "pasos": [
+      {
+        "tipo": "dato",
+        "var": "anual",
+        "valor": 737000000,
+        "texto": "La Comunidad de Madrid contabilizó 736.874.012 viajes en el Metro durante 2025: unos 737 millones."
+      },
+      {
+        "tipo": "supuesto",
+        "var": "dias",
+        "valor": 365,
+        "texto": "Repartimos el año entre sus 365 días."
+      },
+      {
+        "tipo": "calculo",
+        "expr": "anual/dias",
+        "valor": 2019000,
+        "texto": "Viajes al día = viajes del año ÷ días del año."
+      }
+    ],
+    "clave": "Dividir entre 365 mezcla laborables y festivos: un día lectivo normal supera la media y un domingo de agosto se queda muy por debajo.",
+    "fuentes": [
+      {
+        "titulo": "Consorcio Regional de Transportes de Madrid: récord histórico de usuarios de Metro en 2025",
+        "url": "https://crtm.es/comunicacion/sala-de-prensa/noticias/noticias/16012026-la-comunidad-de-madrid-alcanza-en-2025-el-record-historico-de-usuarios-de-metro-con-un-total-de-736874012/",
+        "fecha": "2026-01-16"
+      }
+    ],
+    "version": 1,
+    "historial": []
+  },
+  {
+    "id": "gotas-piscina",
+    "fecha": "2026-11-13",
+    "tipo": "estimacion",
+    "tema": "Objetos cotidianos",
+    "estado": "calculado",
+    "enunciado": "¿Cuántas gotas de agua caben en una piscina olímpica llena?",
+    "condiciones": [
+      "Piscina de 50 × 25 m y 2 m de profundidad, llena hasta el borde.",
+      "Gota normal, como la de un cuentagotas."
+    ],
+    "unidad": "gotas",
+    "referencia": 50000000000,
+    "rango": [
+      25000000000,
+      80000000000
+    ],
+    "pasos": [
+      {
+        "tipo": "enunciado",
+        "var": "volumen",
+        "valor": 2500,
+        "texto": "Volumen de la piscina: 50 × 25 × 2 = 2.500 m³."
+      },
+      {
+        "tipo": "calculo",
+        "var": "litros",
+        "expr": "volumen*1000",
+        "valor": 2500000,
+        "texto": "Un metro cúbico son 1.000 litros: 2,5 millones de litros."
+      },
+      {
+        "tipo": "supuesto",
+        "var": "gota_ml",
+        "valor": 0.05,
+        "texto": "Una gota mide unos 0,05 mL (20 gotas por mL)."
+      },
+      {
+        "tipo": "calculo",
+        "expr": "litros*1000/gota_ml",
+        "valor": 50000000000,
+        "texto": "Gotas = litros × 1.000 mL por litro ÷ mL por gota."
+      }
+    ],
+    "clave": "El tamaño de la gota: está en el denominador. Con 0,03 mL salen 83.000 millones y con 0,1 mL, 25.000 millones.",
+    "curiosidad": "Unos 50.000 millones: unas seis gotas por cada habitante del planeta.",
+    "fuentes": [],
+    "version": 1,
+    "historial": []
+  },
+  {
+    "id": "pasos-vida",
+    "fecha": "2026-11-14",
+    "tipo": "estimacion",
+    "tema": "Cuerpo",
+    "estado": "calculado",
+    "enunciado": "¿Cuántos pasos da una persona a lo largo de una vida de 80 años?",
+    "condiciones": [
+      "Cuenta desde que echa a andar, hacia el primer año de vida, hasta los 80."
+    ],
+    "unidad": "pasos",
+    "referencia": 173010000,
+    "rango": [
+      115340000,
+      230680000
+    ],
+    "pasos": [
+      {
+        "tipo": "supuesto",
+        "var": "pasos_dia",
+        "valor": 6000,
+        "texto": "Se dan de media unos 6.000 pasos al día."
+      },
+      {
+        "tipo": "supuesto",
+        "var": "anios",
+        "valor": 79,
+        "texto": "Se camina durante 79 años (de 1 a 80)."
+      },
+      {
+        "tipo": "calculo",
+        "expr": "pasos_dia*365*anios",
+        "valor": 173010000,
+        "texto": "Pasos = pasos al día × 365 días × años."
+      }
+    ],
+    "clave": "Los pasos diarios: entre 4.000 (vida sedentaria) y 8.000 (activa) la cifra varía de 115 a 231 millones. Los años de vida ya los fijas tú.",
+    "curiosidad": "A unos 70 cm por paso, 173 millones de pasos son unos 121.000 km: tres vueltas a la Tierra.",
+    "fuentes": [],
+    "version": 1,
+    "historial": []
+  },
+  {
+    "id": "folios-pista-tenis",
+    "fecha": "2026-11-15",
+    "tipo": "exacto",
+    "tema": "Objetos cotidianos",
+    "estado": "calculado",
+    "enunciado": "Una pista de tenis de dobles mide 23,77 × 10,97 m. ¿Cuántos folios A4 (21 × 29,7 cm) hacen falta para cubrirla entera?",
+    "condiciones": [
+      "Sin solapes ni huecos; puedes recortar folios, así que cuenta fracciones.",
+      "Solo el rectángulo de juego de dobles."
+    ],
+    "unidad": "folios",
+    "referencia": 4181,
+    "pasos": [
+      {
+        "tipo": "calculo",
+        "var": "area_pista",
+        "expr": "23.77*10.97",
+        "valor": 260.76,
+        "texto": "Área de la pista en m²: 23,77 × 10,97 ≈ 260,76 m²."
+      },
+      {
+        "tipo": "calculo",
+        "var": "area_folio",
+        "expr": "0.21*0.297",
+        "valor": 0.06237,
+        "texto": "Área de un folio en m²: 0,21 × 0,297 = 0,06237 m²."
+      },
+      {
+        "tipo": "calculo",
+        "expr": "area_pista/area_folio",
+        "valor": 4181,
+        "texto": "Folios = área de la pista ÷ área de un folio (≈ 4.181)."
+      }
+    ],
+    "curiosidad": "Son unos 21 paquetes de 200 folios.",
+    "fuentes": [],
+    "version": 1,
+    "historial": []
+  },
+  {
+    "id": "dormir-vida",
+    "fecha": "2026-11-16",
+    "tipo": "estimacion",
+    "tema": "Cuerpo",
+    "estado": "calculado",
+    "enunciado": "¿Cuántos días completos de su vida pasa durmiendo una persona que vive 80 años?",
+    "condiciones": [
+      "Cuenta días de 24 horas, no noches."
+    ],
+    "unidad": "días",
+    "referencia": 9125,
+    "rango": [
+      8500,
+      10950
+    ],
+    "pasos": [
+      {
+        "tipo": "supuesto",
+        "var": "horas",
+        "valor": 7.5,
+        "texto": "Un adulto duerme de media unas 7,5 horas al día."
+      },
+      {
+        "tipo": "supuesto",
+        "var": "anios",
+        "valor": 80,
+        "texto": "La vida dura 80 años."
+      },
+      {
+        "tipo": "calculo",
+        "expr": "anios*365*horas/24",
+        "valor": 9125,
+        "texto": "Días durmiendo = años × 365 días × horas de sueño ÷ 24 horas por día."
+      }
+    ],
+    "clave": "Las horas de sueño: 7 horas dan unos 8.500 días y 9 horas, unos 10.950. Los bebés duermen mucho más, lo que empuja la cifra al alza.",
+    "curiosidad": "Unos 25 años de vida con los ojos cerrados.",
+    "fuentes": [],
+    "version": 1,
+    "historial": []
+  }
+]
