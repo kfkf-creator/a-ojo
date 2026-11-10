@@ -14,6 +14,12 @@ export function validarReto(r) {
     else if (max && r[k].length > max) av.push(`«${k}» tiene ${r[k].length} caracteres (máx. recomendado ${max})`);
   };
   texto('id'); texto('enunciado', 260); texto('unidad', 40); texto('tema');
+  // El enunciado y las condiciones no dan valores: los datos y supuestos los pone quien juega (años como 2025 sí valen).
+  const sinAnios = (t) => String(t || '').replace(/\b(19|20)\d{2}\b/g, '');
+  if (/\d/.test(sinAnios(r.enunciado))) e.push('el enunciado no debe llevar cifras: mueve los valores a los pasos de la solución');
+  (r.condiciones || []).forEach((c, i) => {
+    if (/\d/.test(sinAnios(c))) e.push(`la condición ${i + 1} no debe llevar cifras`);
+  });
   if (!/^[a-z0-9-]+$/.test(r.id || '')) e.push('el id solo admite minúsculas, números y guiones');
   if (!esFechaValida(r.fecha)) e.push('fecha inválida (usa AAAA-MM-DD)');
   if (!TIPOS.includes(r.tipo)) e.push(`tipo debe ser ${TIPOS.join(' o ')}`);

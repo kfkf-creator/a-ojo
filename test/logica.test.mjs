@@ -165,6 +165,8 @@ test('evaluador de expresiones', () => {
   assert.throws(() => evaluar('process.exit()', {}));
   assert.throws(() => evaluar('x+1', {}));
   assert.equal(operacionLegible('floor(13.6/0.6)', {}), '⌊13,6 ÷ 0,6⌋');
+  assert.equal(evaluar('ceil(log2(x))', { x: 3844000000000 }), 42);
+  assert.equal(operacionLegible('ceil(log2(x))', { x: 8 }), '⌈log₂(8)⌉');
 });
 
 test('banco de retos: válido, ≥ 21, mayoría de estimación y cuentas coherentes', () => {
@@ -173,13 +175,16 @@ test('banco de retos: válido, ≥ 21, mayoría de estimación y cuentas coheren
   for (const x of r.resultado) assert.deepEqual(x.errores, [], x.id);
   assert.ok(retos.length >= 21);
   assert.ok(retos.filter((x) => x.tipo === 'estimacion').length > retos.length / 2);
-  assert.ok(retos.some((x) => x.tipo === 'exacto'));
+  for (const x of retos) assert.doesNotMatch(x.enunciado.replace(/(19|20)\d{2}/g, ''), /\d/, `${x.id}: el enunciado lleva cifras`);
 });
 
 test('el validador detecta una explicación que no suma', () => {
   const malo = structuredClone(retos[0]);
   malo.pasos[2].valor = 99999;
   assert.ok(validarReto(malo).errores.length > 0);
+  const conCifras = structuredClone(retos[0]);
+  conCifras.enunciado = '¿Cuántos parpadeos en 24 horas?';
+  assert.ok(validarReto(conCifras).errores.some((m) => m.includes('cifras')));
   const sinFuente = structuredClone(retos.find((x) => x.id === 'barajas-dia'));
   sinFuente.fuentes = [];
   assert.ok(validarReto(sinFuente).errores.some((m) => m.includes('fuentes')));

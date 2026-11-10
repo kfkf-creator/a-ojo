@@ -8,7 +8,7 @@ Los retos viven en `data/retos.json` (una lista). Añade un objeto, ejecuta `npm
 | --- | --- | --- |
 | `id` | sí | Único; minúsculas, números y guiones. No lo cambies una vez publicado: la clave del progreso del jugador es el id |
 | `fecha` | sí | `AAAA-MM-DD`, única. Es el día (de Madrid) en que sale el reto |
-| `tipo` | sí | `estimacion` (referencia razonada) o `exacto` (una única respuesta) |
+| `tipo` | sí | `estimacion` (referencia razonada; es el tipo de todo el banco) |
 | `tema` | sí | Logística, Consumo, Ciudades, Objetos cotidianos, Ciencia, Cuerpo, Espacio… |
 | `estado` | sí | Estado de la verificación de los datos: `verificado` (cifra comprobada en la fuente), `secundaria` (solo comprobada a través de un medio que cita la fuente primaria), `calculado` (solo aritmética sobre datos del enunciado o supuestos), `pendiente` (datos de memoria o sin confirmar: revisar antes de publicar) |
 | `enunciado` | sí | Una pregunta, ≤ 260 caracteres |
@@ -24,7 +24,7 @@ Los retos viven en `data/retos.json` (una lista). Añade un objeto, ejecuta `npm
 
 ## Pasos y cuentas comprobables
 
-Cada paso tiene `tipo` (`dato` consultado, `supuesto`, `enunciado` o `calculo`) y `texto`. Los pasos con cifra llevan `var` (nombre) y `valor`. Los cálculos llevan `expr`, una expresión que usa números y las `var` anteriores (`+ - * / ** ( )` y `floor(...)`); el validador la evalúa y exige que dé `valor` (tolerancia 0,1 % en estimaciones, 0,01 % en exactos). **El último paso debe ser un cálculo cuyo valor sea la `referencia`.** La web muestra la operación automáticamente: `17.000 × 53,3 = 906.100`.
+Cada paso tiene `tipo` (`dato` consultado, `supuesto`, `enunciado` o `calculo`) y `texto`. Los pasos con cifra llevan `var` (nombre) y `valor`. Los cálculos llevan `expr`, una expresión que usa números y las `var` anteriores (`+ - * / ** ( )` y `floor(...)`, `ceil(...)`, `log2(...)`); el validador la evalúa y exige que dé `valor` (tolerancia 0,1 % en estimaciones, 0,01 % en exactos). **El último paso debe ser un cálculo cuyo valor sea la `referencia`.** La web muestra la operación automáticamente: `17.000 × 53,3 = 906.100`.
 
 ```json
 {
@@ -52,6 +52,7 @@ Cada paso tiene `tipo` (`dato` consultado, `supuesto`, `enunciado` o `calculo`) 
 
 ## Lista de comprobación editorial
 
+0. **El enunciado y las condiciones no llevan cifras** (solo años como 2025). Los datos y supuestos van en los pasos: quien juega debe plantear las hipótesis. El validador lo comprueba.
 1. ¿Habitaciones, plazas, pernoctaciones, viajes, viajeros…? Define exactamente qué se cuenta, el periodo y el ámbito geográfico en `condiciones`.
 2. Si hay dos interpretaciones que cambian el resultado más de ~1,5×, reformula.
 3. No debe bastar con leer una cifra: tiene que haber una descomposición razonable.

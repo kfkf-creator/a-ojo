@@ -49,41 +49,53 @@
     "historial": []
   },
   {
-    "id": "pizza-gigante",
+    "id": "jamon-bocadillos",
     "fecha": "2026-10-25",
-    "tipo": "exacto",
-    "tema": "Objetos cotidianos",
+    "tipo": "estimacion",
+    "tema": "Consumo",
     "estado": "calculado",
-    "enunciado": "Una pizzería ofrece una pizza gigante de 90 cm de diámetro o pizzas individuales de 30 cm. ¿Cuántas individuales equivalen a la gigante?",
+    "fuentes": [],
+    "version": 1,
+    "historial": [],
+    "enunciado": "¿Cuántos bocadillos de jamón salen de una pata de jamón entera?",
     "condiciones": [
-      "Todas son círculos con el mismo grosor y los mismos ingredientes por cm²."
+      "Solo cuenta el jamón que se puede comer: sin hueso, corteza ni grasa externa.",
+      "Bocadillos normales, de los de bar."
     ],
-    "unidad": "pizzas individuales",
-    "referencia": 9,
+    "unidad": "bocadillos",
+    "referencia": 75,
+    "rango": [
+      45,
+      120
+    ],
     "pasos": [
       {
-        "tipo": "enunciado",
-        "var": "d_gigante",
-        "valor": 90,
-        "texto": "La pizza gigante mide 90 cm de diámetro."
+        "tipo": "supuesto",
+        "var": "peso",
+        "valor": 7.5,
+        "texto": "Una pata entera pesa unos 7,5 kg."
       },
       {
-        "tipo": "enunciado",
-        "var": "d_indiv",
-        "valor": 30,
-        "texto": "Cada individual mide 30 cm de diámetro."
+        "tipo": "supuesto",
+        "var": "aprov",
+        "valor": 0.6,
+        "texto": "Se aprovecha en torno al 60 %: el resto es hueso, corteza y grasa."
+      },
+      {
+        "tipo": "supuesto",
+        "var": "racion",
+        "valor": 0.06,
+        "texto": "Un bocadillo lleva unos 60 g (0,06 kg) de jamón."
       },
       {
         "tipo": "calculo",
-        "expr": "(d_gigante/d_indiv)**2",
-        "valor": 9,
-        "texto": "La cantidad de pizza depende del área, y el área crece con el cuadrado del diámetro: 3 veces más ancha son 9 veces más pizza (π se cancela)."
+        "expr": "peso*aprov/racion",
+        "valor": 75,
+        "texto": "Bocadillos = kilos aprovechables ÷ kilos por bocadillo."
       }
     ],
-    "curiosidad": "La intuición dice «3». Por eso las pizzas grandes casi siempre salen a cuenta.",
-    "fuentes": [],
-    "version": 1,
-    "historial": []
+    "clave": "La ración por bocadillo: con 40 g salen unos 112 bocadillos y con 80 g, unos 56. El peso de la pata y el aprovechamiento mueven la cifra bastante menos.",
+    "curiosidad": "Un bocadillo generoso y uno tacaño pueden diferir en el doble de jamón."
   },
   {
     "id": "barajas-dia",
@@ -195,9 +207,9 @@
     "tipo": "estimacion",
     "tema": "Cuerpo",
     "estado": "verificado",
-    "enunciado": "¿Cuántas veces late el corazón de una persona que vive 80 años?",
+    "enunciado": "¿Cuántas veces late el corazón de una persona a lo largo de toda su vida?",
     "condiciones": [
-      "Cuenta desde el nacimiento hasta los 80 años cumplidos."
+      "Cuenta desde el nacimiento hasta el final de una vida larga."
     ],
     "unidad": "latidos",
     "referencia": 2943360000,
@@ -216,7 +228,7 @@
         "tipo": "supuesto",
         "var": "anios",
         "valor": 80,
-        "texto": "La vida dura 80 años."
+        "texto": "Una vida larga dura unos 80 años."
       },
       {
         "tipo": "calculo",
@@ -245,50 +257,59 @@
     "historial": []
   },
   {
-    "id": "folio-doblado",
+    "id": "folio-luna",
     "fecha": "2026-10-29",
-    "tipo": "exacto",
-    "tema": "Objetos cotidianos",
-    "estado": "calculado",
-    "enunciado": "Un folio mide 0,1 mm de grosor. Si pudieras doblarlo por la mitad 20 veces seguidas, ¿qué altura tendría el taco resultante?",
-    "condiciones": [
-      "Hipótesis ideal: es imposible en la práctica, pero cada doblez duplica exactamente las capas.",
-      "Ignora lo que ocupan los pliegues."
-    ],
-    "unidad": "metros",
-    "referencia": 104.86,
-    "pasos": [
+    "tipo": "estimacion",
+    "tema": "Espacio",
+    "estado": "verificado",
+    "fuentes": [
       {
-        "tipo": "enunciado",
-        "var": "grosor",
-        "valor": 0.1,
-        "texto": "Una capa mide 0,1 mm."
-      },
-      {
-        "tipo": "calculo",
-        "var": "capas",
-        "expr": "2**20",
-        "valor": 1048576,
-        "texto": "Cada doblez duplica las capas: tras 20 dobleces hay 2²⁰ capas."
-      },
-      {
-        "tipo": "calculo",
-        "var": "altura_mm",
-        "expr": "capas*grosor",
-        "valor": 104857.6,
-        "texto": "Altura en milímetros = capas × grosor de una capa."
-      },
-      {
-        "tipo": "calculo",
-        "expr": "altura_mm/1000",
-        "valor": 104.86,
-        "texto": "Dividimos entre 1.000 para pasar a metros."
+        "titulo": "NASA: Moon Fact Sheet (distancia media)",
+        "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html",
+        "fecha": "2024"
       }
     ],
-    "curiosidad": "Con 10 dobleces sería un taco de 10 cm. Los 10 siguientes lo multiplican por 1.000: de la palma de una mano a un edificio de 30 plantas.",
-    "fuentes": [],
     "version": 1,
-    "historial": []
+    "historial": [],
+    "enunciado": "¿Cuántas veces habría que doblar un folio por la mitad para que el taco resultante llegara a la Luna?",
+    "condiciones": [
+      "Hipótesis ideal: cada doblez duplica exactamente las capas, aunque en la práctica sea imposible."
+    ],
+    "unidad": "dobleces",
+    "referencia": 42,
+    "rango": [
+      40,
+      44
+    ],
+    "pasos": [
+      {
+        "tipo": "dato",
+        "var": "dist",
+        "valor": 384400,
+        "texto": "La Luna está de media a 384.400 km de la Tierra."
+      },
+      {
+        "tipo": "supuesto",
+        "var": "grosor",
+        "valor": 0.0001,
+        "texto": "Un folio normal mide unos 0,1 mm (0,0001 m) de grosor."
+      },
+      {
+        "tipo": "calculo",
+        "expr": "dist*1000/grosor",
+        "valor": 3844000000000,
+        "texto": "Cuántos folios apilados harían falta: distancia en metros ÷ grosor de un folio (≈ 3,8 billones).",
+        "var": "razon"
+      },
+      {
+        "tipo": "calculo",
+        "expr": "ceil(log2(razon))",
+        "valor": 42,
+        "texto": "Cada doblez duplica la altura: hacen falta tantos dobleces como veces se puede duplicar hasta llegar ahí, 2⁴² ≈ 4,4 billones."
+      }
+    ],
+    "clave": "Casi nada depende del grosor: si el folio fuera el doble de grueso, bastaría con un doblez menos. Lo que sorprende es lo pocos que son.",
+    "curiosidad": "Con 10 dobleces el taco mide unos 10 cm; con 20, más de 100 m; con 30, más de 100 km."
   },
   {
     "id": "plaza-mayor-concierto",
@@ -342,49 +363,51 @@
   {
     "id": "lavadoras-trailer",
     "fecha": "2026-10-31",
-    "tipo": "exacto",
+    "tipo": "estimacion",
     "tema": "Logística",
     "estado": "calculado",
-    "enunciado": "Un tráiler tiene una caja de 13,6 × 2,45 × 2,7 m. Cada lavadora embalada es un bloque de 0,6 × 0,6 × 0,85 m. ¿Cuántas caben?",
-    "condiciones": [
-      "Siempre de pie (el lado de 0,85 m, en vertical) y todas con la misma orientación.",
-      "Solo lavadoras enteras, apiladas en capas sin huecos intermedios."
-    ],
-    "unidad": "lavadoras",
-    "referencia": 264,
-    "pasos": [
-      {
-        "tipo": "calculo",
-        "var": "largo",
-        "expr": "floor(13.6/0.6)",
-        "valor": 22,
-        "texto": "A lo largo caben 13,6 ÷ 0,6 = 22,7 → 22 lavadoras enteras."
-      },
-      {
-        "tipo": "calculo",
-        "var": "ancho",
-        "expr": "floor(2.45/0.6)",
-        "valor": 4,
-        "texto": "A lo ancho caben 2,45 ÷ 0,6 = 4,08 → 4."
-      },
-      {
-        "tipo": "calculo",
-        "var": "capas",
-        "expr": "floor(2.7/0.85)",
-        "valor": 3,
-        "texto": "En altura caben 2,7 ÷ 0,85 = 3,18 → 3 capas."
-      },
-      {
-        "tipo": "calculo",
-        "expr": "largo*ancho*capas",
-        "valor": 264,
-        "texto": "Total = filas × columnas × capas."
-      }
-    ],
-    "curiosidad": "Dividir volúmenes (≈ 89 m³ ÷ 0,31 m³ ≈ 288) sobreestima: en cada dirección se pierde un trozo que no da para otra lavadora.",
     "fuentes": [],
     "version": 1,
-    "historial": []
+    "historial": [],
+    "enunciado": "¿Cuántas lavadoras caben en un camión tráiler?",
+    "condiciones": [
+      "Lavadoras embaladas, apiladas, con la caja del camión llena.",
+      "Solo lavadoras enteras."
+    ],
+    "unidad": "lavadoras",
+    "referencia": 270,
+    "rango": [
+      200,
+      330
+    ],
+    "pasos": [
+      {
+        "tipo": "supuesto",
+        "var": "vol_camion",
+        "valor": 90,
+        "texto": "La caja de un tráiler mide unos 13,6 × 2,45 × 2,7 m: unos 90 m³."
+      },
+      {
+        "tipo": "supuesto",
+        "var": "vol_lav",
+        "valor": 0.3,
+        "texto": "Una lavadora embalada mide unos 0,6 × 0,6 × 0,85 m: unos 0,3 m³."
+      },
+      {
+        "tipo": "supuesto",
+        "var": "aprov",
+        "valor": 0.9,
+        "texto": "Entre huecos y esquinas se aprovecha en torno al 90 % del volumen."
+      },
+      {
+        "tipo": "calculo",
+        "expr": "vol_camion/vol_lav*aprov",
+        "valor": 270,
+        "texto": "Lavadoras = volumen del camión ÷ volumen de una lavadora × aprovechamiento."
+      }
+    ],
+    "clave": "El tamaño de cada lavadora embalada y el aprovechamiento del hueco: entre 0,25 y 0,35 m³ por lavadora, la cifra va de unas 230 a 320.",
+    "curiosidad": "Calcular por volumen es una buena aproximación, aunque en la práctica cada dirección pierde un trozo que no da para otra lavadora entera."
   },
   {
     "id": "canica-luna",
@@ -392,12 +415,13 @@
     "tipo": "estimacion",
     "tema": "Espacio",
     "estado": "verificado",
-    "enunciado": "Imagina que la Tierra es una canica de 1 cm de diámetro. ¿A qué distancia estaría la Luna, con la misma escala?",
+    "enunciado": "Imagina que la Tierra fuese una canica. ¿A qué distancia de ella estaría la Luna, con la misma escala?",
     "condiciones": [
+      "Una canica normal, de las de jugar.",
       "Usa la misma escala para el tamaño y para la distancia."
     ],
     "unidad": "centímetros",
-    "referencia": 30.13,
+    "referencia": 48.2,
     "pasos": [
       {
         "tipo": "dato",
@@ -412,13 +436,19 @@
         "texto": "El diámetro ecuatorial de la Tierra es de unos 12.756 km."
       },
       {
+        "tipo": "supuesto",
+        "var": "canica",
+        "valor": 1.6,
+        "texto": "Una canica normal mide unos 1,6 cm de diámetro."
+      },
+      {
         "tipo": "calculo",
-        "expr": "dist/diam",
-        "valor": 30.13,
-        "texto": "Con la canica de 1 cm, la distancia en cm es el número de «Tierras» que caben en el camino: distancia ÷ diámetro."
+        "expr": "dist/diam*canica",
+        "valor": 48.2,
+        "texto": "Entre la Tierra y la Luna caben unas 30 Tierras alineadas (distancia ÷ diámetro); con una canica de 1,6 cm son unos 48 cm."
       }
     ],
-    "clave": "No hay supuestos: solo dos medidas. Lo que engaña es la intuición, que suele colocar la Luna a 5-10 cm cuando entre ambas cabrían unas 30 Tierras alineadas.",
+    "clave": "El tamaño de la canica: entre 1,3 y 2,5 cm la Luna queda a entre 39 y 75 cm. Casi todo el mundo la sitúa mucho más cerca.",
     "fuentes": [
       {
         "titulo": "NASA: Moon Fact Sheet (distancia media y radio ecuatorial de la Tierra, 6.378,1 km)",
@@ -427,7 +457,11 @@
       }
     ],
     "version": 1,
-    "historial": []
+    "historial": [],
+    "rango": [
+      38,
+      76
+    ]
   },
   {
     "id": "turismos-en-fila",
@@ -479,37 +513,64 @@
     "historial": []
   },
   {
-    "id": "campo-futbol-10k",
+    "id": "maraton-vueltas-campo",
     "fecha": "2026-11-03",
-    "tipo": "exacto",
+    "tipo": "estimacion",
     "tema": "Objetos cotidianos",
-    "estado": "calculado",
-    "enunciado": "Un campo de fútbol mide 105 × 68 m. ¿Cuántas vueltas al perímetro del césped hay que dar para correr 10 km?",
+    "estado": "verificado",
+    "fuentes": [
+      {
+        "titulo": "World Athletics: maratón, 26 millas y 385 yardas (42,195 km)",
+        "url": "https://worldathletics.org/disciplines/road/marathon",
+        "fecha": "2025"
+      },
+      {
+        "titulo": "FIFA: dimensiones recomendadas del terreno de juego, 105 × 68 m (las Reglas del Juego del IFAB permiten de 100 a 110 m de largo y de 64 a 75 m de ancho)",
+        "url": "https://publications.fifa.com/de/football-stadiums-guidelines/technical-guideline/stadium-guidelines/pitch-dimensions-and-surrounding-areas",
+        "fecha": "2025"
+      }
+    ],
+    "version": 1,
+    "historial": [],
+    "enunciado": "¿Cuántas vueltas al perímetro de un campo de fútbol equivalen a un maratón?",
     "condiciones": [
-      "Corres pegado a las líneas, siguiendo el rectángulo exacto, con esquinas en ángulo recto.",
+      "Corriendo pegado a las líneas del césped, sin redondear las esquinas.",
       "Cuenta las vueltas con decimales."
     ],
     "unidad": "vueltas",
-    "referencia": 28.9,
+    "referencia": 121.95,
+    "rango": [
+      105,
+      135
+    ],
     "pasos": [
       {
-        "tipo": "calculo",
-        "var": "perim",
-        "expr": "2*(105+68)",
-        "valor": 346,
-        "texto": "Perímetro = 2 × (largo + ancho) = 346 m."
+        "tipo": "dato",
+        "var": "maraton",
+        "valor": 42195,
+        "texto": "Un maratón mide 42,195 km (42.195 m)."
+      },
+      {
+        "tipo": "supuesto",
+        "var": "largo",
+        "valor": 105,
+        "texto": "Un campo de fútbol grande mide unos 105 m de largo..."
+      },
+      {
+        "tipo": "supuesto",
+        "var": "ancho",
+        "valor": 68,
+        "texto": "...y unos 68 m de ancho."
       },
       {
         "tipo": "calculo",
-        "expr": "10000/perim",
-        "valor": 28.9,
-        "texto": "10 km son 10.000 m; vueltas = 10.000 ÷ 346."
+        "expr": "maraton/(2*(largo+ancho))",
+        "valor": 121.95,
+        "texto": "Vueltas = distancia del maratón ÷ perímetro del campo (2 × (largo + ancho))."
       }
     ],
-    "curiosidad": "Casi 29 vueltas: más de las que muchos aficionados creen que dan «de media» los jugadores en un partido, que corren unos 10-12 km.",
-    "fuentes": [],
-    "version": 1,
-    "historial": []
+    "clave": "Las medidas del campo: entre un campo pequeño (100 × 64 m) y uno grande (110 × 75 m) salen de 108 a 129 vueltas. La distancia del maratón es fija.",
+    "curiosidad": "Más de cien vueltas al campo sin parar: más o menos lo que corre un jugador en un puñado de partidos."
   },
   {
     "id": "agua-hogares-piscinas",
@@ -519,8 +580,7 @@
     "estado": "verificado",
     "enunciado": "¿Cuántas piscinas olímpicas se llenarían con el agua que gastan al año todos los hogares de España?",
     "condiciones": [
-      "Piscina olímpica: 50 × 25 × 2 m = 2.500 m³.",
-      "Solo uso doméstico, datos de 2024."
+      "Solo uso doméstico, con los datos de 2024."
     ],
     "unidad": "piscinas olímpicas",
     "referencia": 915700,
@@ -552,7 +612,7 @@
         "tipo": "calculo",
         "expr": "m3/2500",
         "valor": 915700,
-        "texto": "Piscinas = metros cúbicos ÷ 2.500 m³ por piscina."
+        "texto": "Piscinas = metros cúbicos ÷ 2.500 m³ (una piscina olímpica mide 50 × 25 × 2 m)."
       }
     ],
     "clave": "El consumo por persona. Entre 100 y 150 litros al día el resultado va de unas 720.000 a 1,07 millones de piscinas; la población la conoces bastante bien.",
@@ -575,7 +635,7 @@
     "estado": "verificado",
     "enunciado": "¿Cuántos litros de sangre bombea al día el corazón de un adulto en reposo?",
     "condiciones": [
-      "Cuenta toda la sangre que sale del corazón en 24 horas, aunque sea la misma que vuelve a pasar una y otra vez."
+      "Cuenta toda la sangre que sale del corazón en un día, aunque sea la misma que vuelve a pasar una y otra vez."
     ],
     "unidad": "litros",
     "referencia": 7056,
@@ -715,42 +775,59 @@
     "historial": []
   },
   {
-    "id": "arroz-casilla-40",
+    "id": "vuelta-mundo-andando",
     "fecha": "2026-11-08",
-    "tipo": "exacto",
-    "tema": "Objetos cotidianos",
-    "estado": "calculado",
-    "enunciado": "Pones 1 grano de arroz en la primera casilla de un tablero de ajedrez, 2 en la segunda, 4 en la tercera, y sigues duplicando. ¿Cuántos granos pones en la casilla 40?",
-    "condiciones": [
-      "Pregunta solo por esa casilla, no por el total acumulado."
-    ],
-    "unidad": "granos",
-    "referencia": 549755813888,
-    "pasos": [
+    "tipo": "estimacion",
+    "tema": "Espacio",
+    "estado": "verificado",
+    "fuentes": [
       {
-        "tipo": "enunciado",
-        "var": "primera",
-        "valor": 1,
-        "texto": "La primera casilla lleva 1 grano."
-      },
-      {
-        "tipo": "calculo",
-        "var": "dup",
-        "expr": "40-1",
-        "valor": 39,
-        "texto": "Para llegar a la casilla 40 se duplica 39 veces."
-      },
-      {
-        "tipo": "calculo",
-        "expr": "primera*2**dup",
-        "valor": 549755813888,
-        "texto": "Granos = 1 × 2³⁹ = 549.755.813.888 (más de medio billón en una sola casilla)."
+        "titulo": "NASA: Earth Fact Sheet (radio ecuatorial de 6.378,137 km; el ecuador mide 2π × el radio ≈ 40.075 km)",
+        "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html",
+        "fecha": "2024-11-15"
       }
     ],
-    "curiosidad": "Y el tablero tiene 64 casillas: en la última habría 2⁶³ granos, unos 9 trillones.",
-    "fuentes": [],
     "version": 1,
-    "historial": []
+    "historial": [],
+    "enunciado": "¿Cuántos días tardaría una persona en dar la vuelta al mundo andando por el ecuador?",
+    "condiciones": [
+      "Como si todo fuera tierra firme: ignora los océanos.",
+      "Camina a un ritmo normal, con descansos y noches de sueño."
+    ],
+    "unidad": "días",
+    "referencia": 1145,
+    "rango": [
+      900,
+      2000
+    ],
+    "pasos": [
+      {
+        "tipo": "dato",
+        "var": "vuelta",
+        "valor": 40075,
+        "texto": "El ecuador mide unos 40.075 km."
+      },
+      {
+        "tipo": "supuesto",
+        "var": "ritmo",
+        "valor": 5,
+        "texto": "Se camina a unos 5 km/h..."
+      },
+      {
+        "tipo": "supuesto",
+        "var": "horas",
+        "valor": 7,
+        "texto": "...durante unas 7 horas al día."
+      },
+      {
+        "tipo": "calculo",
+        "expr": "vuelta/(ritmo*horas)",
+        "valor": 1145,
+        "texto": "Días = vuelta al mundo ÷ kilómetros diarios (ritmo × horas = 35 km al día)."
+      }
+    ],
+    "clave": "Los kilómetros que se aguantan cada día: a 20 km diarios serían unos 2.000 días y a 45, unos 900. La longitud del ecuador no es discutible.",
+    "curiosidad": "Más de tres años sin un solo día de descanso."
   },
   {
     "id": "iss-amaneceres",
@@ -760,7 +837,7 @@
     "estado": "verificado",
     "enunciado": "¿Cuántos amaneceres ve en un día un astronauta de la Estación Espacial Internacional?",
     "condiciones": [
-      "Un día de 24 horas.",
+      "Un día completo.",
       "Cuenta cada vez que sale el Sol desde su ventana."
     ],
     "unidad": "amaneceres",
@@ -857,44 +934,47 @@
     "historial": []
   },
   {
-    "id": "tabla-periodica-cuadricula",
+    "id": "hoja-cuadriculada",
     "fecha": "2026-11-11",
-    "tipo": "exacto",
+    "tipo": "estimacion",
     "tema": "Objetos cotidianos",
     "estado": "calculado",
-    "enunciado": "Dibujas la tabla periódica como una cuadrícula de 18 columnas y 7 filas que ocupa una hoja A4 horizontal (297 × 210 mm). ¿Cuánto miden en total las líneas de la cuadrícula?",
-    "condiciones": [
-      "Cuenta también el borde exterior.",
-      "La cuadrícula llega hasta los cuatro bordes de la hoja."
-    ],
-    "unidad": "metros",
-    "referencia": 6.366,
-    "pasos": [
-      {
-        "tipo": "calculo",
-        "var": "vert",
-        "expr": "(18+1)*210",
-        "valor": 3990,
-        "texto": "Líneas verticales: 18 columnas necesitan 19 líneas (con el borde), de 210 mm cada una."
-      },
-      {
-        "tipo": "calculo",
-        "var": "hor",
-        "expr": "(7+1)*297",
-        "valor": 2376,
-        "texto": "Líneas horizontales: 7 filas necesitan 8 líneas, de 297 mm cada una."
-      },
-      {
-        "tipo": "calculo",
-        "expr": "(vert+hor)/1000",
-        "valor": 6.366,
-        "texto": "Suma en milímetros y paso a metros: 6.366 mm."
-      }
-    ],
-    "curiosidad": "El error clásico es contar 18 + 7 líneas: n casillas siempre necesitan n + 1 líneas.",
     "fuentes": [],
     "version": 1,
-    "historial": []
+    "historial": [],
+    "enunciado": "¿Cuántos metros de líneas hay impresas en una hoja de cuaderno cuadriculado?",
+    "condiciones": [
+      "Cuenta todas las líneas, verticales y horizontales, de una hoja entera.",
+      "Imagina que la cuadrícula cubre toda la hoja, sin márgenes."
+    ],
+    "unidad": "metros",
+    "referencia": 24.95,
+    "rango": [
+      15,
+      32
+    ],
+    "pasos": [
+      {
+        "tipo": "supuesto",
+        "var": "area",
+        "valor": 0.06237,
+        "texto": "La hoja es un A4, de 21 × 29,7 cm: 0,06237 m²."
+      },
+      {
+        "tipo": "supuesto",
+        "var": "cuadro",
+        "valor": 0.005,
+        "texto": "Cada cuadro mide 5 mm (0,005 m) de lado."
+      },
+      {
+        "tipo": "calculo",
+        "expr": "2*area/cuadro",
+        "valor": 24.95,
+        "texto": "Hay (ancho ÷ cuadro) líneas verticales de largo igual al alto, y lo mismo en horizontal: longitud total = 2 × área ÷ lado del cuadro."
+      }
+    ],
+    "clave": "El tamaño del cuadro: con cuadros de 4 mm saldrían unos 31 m y con cuadros de 8 mm, unos 16. El tamaño de la hoja apenas se discute.",
+    "curiosidad": "El truco es que no hace falta contar líneas: cada cuadro «gasta» dos lados de su tamaño."
   },
   {
     "id": "metro-madrid-dia",
@@ -952,7 +1032,7 @@
     "estado": "calculado",
     "enunciado": "¿Cuántas gotas de agua caben en una piscina olímpica llena?",
     "condiciones": [
-      "Piscina de 50 × 25 m y 2 m de profundidad, llena hasta el borde.",
+      "Una piscina olímpica llena hasta el borde.",
       "Gota normal, como la de un cuentagotas."
     ],
     "unidad": "gotas",
@@ -963,10 +1043,10 @@
     ],
     "pasos": [
       {
-        "tipo": "enunciado",
+        "tipo": "supuesto",
         "var": "volumen",
         "valor": 2500,
-        "texto": "Volumen de la piscina: 50 × 25 × 2 = 2.500 m³."
+        "texto": "Una piscina olímpica mide 50 × 25 m y 2 m de profundidad: 2.500 m³."
       },
       {
         "tipo": "calculo",
@@ -1000,9 +1080,9 @@
     "tipo": "estimacion",
     "tema": "Cuerpo",
     "estado": "calculado",
-    "enunciado": "¿Cuántos pasos da una persona a lo largo de una vida de 80 años?",
+    "enunciado": "¿Cuántos pasos da una persona a lo largo de toda su vida?",
     "condiciones": [
-      "Cuenta desde que echa a andar, hacia el primer año de vida, hasta los 80."
+      "Cuenta desde que echa a andar, hacia el primer año de vida, hasta el final de una vida larga."
     ],
     "unidad": "pasos",
     "referencia": 173010000,
@@ -1021,7 +1101,7 @@
         "tipo": "supuesto",
         "var": "anios",
         "valor": 79,
-        "texto": "Se camina durante 79 años (de 1 a 80)."
+        "texto": "Se camina durante unos 79 años: una vida larga menos el primer año."
       },
       {
         "tipo": "calculo",
@@ -1039,42 +1119,51 @@
   {
     "id": "folios-pista-tenis",
     "fecha": "2026-11-15",
-    "tipo": "exacto",
+    "tipo": "estimacion",
     "tema": "Objetos cotidianos",
-    "estado": "calculado",
-    "enunciado": "Una pista de tenis de dobles mide 23,77 × 10,97 m. ¿Cuántos folios A4 (21 × 29,7 cm) hacen falta para cubrirla entera?",
+    "estado": "verificado",
+    "fuentes": [
+      {
+        "titulo": "ITF: Reglas del tenis, la pista mide 23,77 m de largo y 10,97 m de ancho en dobles",
+        "url": "https://itftennis.com/media/7221/2025-rules-of-tennis-english.pdf",
+        "fecha": "2025"
+      }
+    ],
+    "version": 1,
+    "historial": [],
+    "enunciado": "¿Cuántos folios harían falta para cubrir entera una pista de tenis?",
     "condiciones": [
-      "Sin solapes ni huecos; puedes recortar folios, así que cuenta fracciones.",
+      "Folios sin solapar, pudiendo recortarlos: cuenta fracciones.",
       "Solo el rectángulo de juego de dobles."
     ],
     "unidad": "folios",
     "referencia": 4181,
+    "rango": [
+      2800,
+      5000
+    ],
     "pasos": [
       {
-        "tipo": "calculo",
+        "tipo": "dato",
         "var": "area_pista",
-        "expr": "23.77*10.97",
         "valor": 260.76,
-        "texto": "Área de la pista en m²: 23,77 × 10,97 ≈ 260,76 m²."
+        "texto": "La pista de dobles mide 23,77 × 10,97 m: unos 260,76 m²."
       },
       {
-        "tipo": "calculo",
+        "tipo": "supuesto",
         "var": "area_folio",
-        "expr": "0.21*0.297",
         "valor": 0.06237,
-        "texto": "Área de un folio en m²: 0,21 × 0,297 = 0,06237 m²."
+        "texto": "Un folio A4 mide 21 × 29,7 cm: 0,06237 m²."
       },
       {
         "tipo": "calculo",
         "expr": "area_pista/area_folio",
         "valor": 4181,
-        "texto": "Folios = área de la pista ÷ área de un folio (≈ 4.181)."
+        "texto": "Folios = área de la pista ÷ área de un folio."
       }
     ],
-    "curiosidad": "Son unos 21 paquetes de 200 folios.",
-    "fuentes": [],
-    "version": 1,
-    "historial": []
+    "clave": "Las medidas de la pista: si olvidas los pasillos de dobles (pista de individuales: 23,77 × 8,23 m) salen unos 3.100 folios.",
+    "curiosidad": "Son unos 21 paquetes de 200 folios."
   },
   {
     "id": "dormir-vida",
@@ -1082,9 +1171,9 @@
     "tipo": "estimacion",
     "tema": "Cuerpo",
     "estado": "calculado",
-    "enunciado": "¿Cuántos días completos de su vida pasa durmiendo una persona que vive 80 años?",
+    "enunciado": "¿Cuántos días completos pasa durmiendo una persona a lo largo de una vida larga?",
     "condiciones": [
-      "Cuenta días de 24 horas, no noches."
+      "Cuenta días completos de sueño, no noches."
     ],
     "unidad": "días",
     "referencia": 9125,
@@ -1103,7 +1192,7 @@
         "tipo": "supuesto",
         "var": "anios",
         "valor": 80,
-        "texto": "La vida dura 80 años."
+        "texto": "Una vida larga dura unos 80 años."
       },
       {
         "tipo": "calculo",

@@ -20,20 +20,25 @@ function tokenizar(expr) {
 export function evaluar(expr, vars = {}) {
   const toks = tokenizar(expr);
   for (const t of toks) {
-    if (/^[A-Za-z_]/.test(t) && t !== 'floor' && !(t in vars)) throw new Error(`Variable desconocida «${t}»`);
+    if (/^[A-Za-z_]/.test(t) && !(t in FUNCIONES) && !(t in vars)) throw new Error(`Variable desconocida «${t}»`);
   }
-  const f = new Function(...Object.keys(vars), 'floor', `"use strict"; return (${toks.join(' ')});`);
-  return f(...Object.values(vars), Math.floor);
+  const f = new Function(...Object.keys(vars), ...Object.keys(FUNCIONES), `"use strict"; return (${toks.join(' ')});`);
+  return f(...Object.values(vars), ...Object.values(FUNCIONES));
 }
+
+// Funciones permitidas en las expresiones: abrir y cerrar al mostrar la operación.
+const FUNCIONES = { floor: Math.floor, ceil: Math.ceil, log2: Math.log2 };
+const MARCAS = { floor: ['⌊', '⌋'], ceil: ['⌈', '⌉'], log2: ['log₂(', ')'] };
 
 export function operacionLegible(expr, vars = {}) {
   const toks = tokenizar(expr);
   const pila = [];
   let s = '';
   for (const t of toks) {
-    if (t === 'floor') { pila.push('floor?'); continue; }
+    if (t in FUNCIONES) { pila.push(t + '?'); continue; }
     if (t === '(') {
-      if (pila[pila.length - 1] === 'floor?') { pila[pila.length - 1] = '⌋'; s += '⌊'; } else { pila.push(')'); s += '('; }
+      const ult = pila[pila.length - 1];
+      if (ult && ult.endsWith('?')) { const [a, c] = MARCAS[ult.slice(0, -1)]; pila[pila.length - 1] = c; s += a; } else { pila.push(')'); s += '('; }
     } else if (t === ')') s += pila.pop() ?? ')';
     else if (t === '*') s += ' × ';
     else if (t === '/') s += ' ÷ ';

@@ -54,8 +54,9 @@ export function crearAlmacen(storage) {
       return true;
     },
     todas: () => leer().jugadas,
-    estadisticas(hoy) {
-      const js = Object.values(leer().jugadas);
+    estadisticas(hoy, ids) {
+      // Solo cuentan los retos que siguen en el banco (por si alguno se retira).
+      const js = Object.entries(leer().jugadas).filter(([id]) => !ids || ids.has(id)).map(([, j]) => j);
       const diarias = js.filter((j) => j.modo === 'diario').map((j) => j.fechaReto);
       const racha = calcularRacha(diarias, hoy);
       const media = js.length ? Math.round(js.reduce((s, j) => s + j.puntuacion, 0) / js.length) : null;

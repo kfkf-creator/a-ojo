@@ -41,6 +41,7 @@ const almacen = crearAlmacen(almacenamiento());
 const reducido = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 let retos = [];
+const estadisticas = (hoy) => almacen.estadisticas(hoy, new Set(retos.map((r) => r.id)));
 let diaMostrado = '';
 let animar = false;
 
@@ -63,7 +64,7 @@ function cabecera(hoy) {
     const activo = a.dataset.nav === (ruta.pagina === 'reto' ? 'archivo' : ruta.pagina);
     if (activo) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
   });
-  const e = almacen.estadisticas(hoy);
+  const e = estadisticas(hoy);
   $racha.innerHTML = e.actual
     ? `Racha: <strong>${e.actual} ${e.actual === 1 ? 'día' : 'días'}</strong> · mejor: ${e.mejor}`
     : `Racha: <strong>0</strong> · resuelve el reto de hoy para empezarla`;
@@ -251,7 +252,7 @@ function resultadoHTML(r, jug, modoVista, hoy) {
   const p = puntuar(est, v.referencia);
   const num = numero(retos, r.id);
   const texto = resumen({ numero: num, puntuacion: jug.puntuacion, url: location.origin + location.pathname });
-  const e = almacen.estadisticas(hoy);
+  const e = estadisticas(hoy);
   const fuentes = (v.fuentes || []).map((f) => `<li><a href="${esc(f.url)}" target="_blank" rel="noopener">${esc(f.titulo)}</a> <span class="estado-dato">(${esc(f.fecha)})</span></li>`).join('');
   const esExacto = r.tipo === 'exacto';
   return `
@@ -337,7 +338,7 @@ function vistaSinReto(st, hoy) {
 
 function vistaArchivo(hoy) {
   const lista = pasados(retos, hoy);
-  const e = almacen.estadisticas(hoy);
+  const e = estadisticas(hoy);
   const items = lista.map((r) => {
     const j = almacen.jugada(r.id);
     const est = j ? `<span class="estado estado--hecho">${j.puntuacion}/100</span>` : '<span class="estado">Sin jugar</span>';
@@ -365,7 +366,7 @@ const ojoSVG = (px) => `<svg viewBox="0 0 32 32" width="${px}" height="${px}" ar
 function vistaInicio(hoy) {
   const r = retoDeHoy(retos, hoy);
   const jug = r && almacen.jugada(r.id);
-  const e = almacen.estadisticas(hoy);
+  const e = estadisticas(hoy);
   const ant = pasados(retos, hoy);
   const hechos = ant.filter((x) => almacen.jugada(x.id)).length;
   const tarjetaHoy = r
@@ -432,10 +433,10 @@ function vistaAyuda() {
     </section>
 
     <section class="bloque" aria-labelledby="h-tipos">
-      <h2 id="h-tipos">Dos tipos de reto</h2>
+      <h2 id="h-tipos">Aquí se piensa, no se calcula</h2>
       <div class="dos">
-        <div class="mini"><h3>Estimación</h3><p>La cifra de referencia es una respuesta razonada con datos y supuestos explicados. Puede haber otras razonables.</p></div>
-        <div class="mini"><h3>Cálculo exacto</h3><p>Imaginas una situación y encuentras un cálculo sencillo. Solo hay una respuesta correcta.</p></div>
+        <div class="mini"><h3>Sin datos en la pregunta</h3><p>El enunciado nunca te da cifras: eres tú quien plantea las hipótesis (¿cuántos hay? ¿cuánto mide cada uno?) y luego las multiplicas.</p></div>
+        <div class="mini"><h3>Una referencia razonada</h3><p>La cifra de referencia sale de datos y supuestos explicados al final. Puede haber otras respuestas razonables: por eso se puntúa por cercanía.</p></div>
       </div>
     </section>
 
