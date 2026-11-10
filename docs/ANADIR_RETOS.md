@@ -53,6 +53,7 @@ Cada paso tiene `tipo` (`dato` consultado, `supuesto`, `enunciado` o `calculo`) 
 ## Lista de comprobación editorial
 
 0. **El enunciado y las condiciones no llevan cifras** (solo años como 2025). Los datos y supuestos van en los pasos: quien juega debe plantear las hipótesis. El validador lo comprueba.
+0b. **Las condiciones solo aclaran, nunca orientan.** Vale cerrar una ambigüedad o una hipótesis polémica («sin márgenes», «solo turismos»); no vale insinuar cómo resolver (qué partes contar, qué descomponer, qué fórmula usar). Si al quitar la condición alguien podría despistarse por no pensar, no se pone: es parte del reto.
 1. ¿Habitaciones, plazas, pernoctaciones, viajes, viajeros…? Define exactamente qué se cuenta, el periodo y el ámbito geográfico en `condiciones`.
 2. Si hay dos interpretaciones que cambian el resultado más de ~1,5×, reformula.
 3. No debe bastar con leer una cifra: tiene que haber una descomposición razonable.

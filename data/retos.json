@@ -59,7 +59,6 @@
     "historial": [],
     "enunciado": "¿Cuántos bocadillos de jamón salen de una pata de jamón entera?",
     "condiciones": [
-      "Solo cuenta el jamón que se puede comer: sin hueso, corteza ni grasa externa.",
       "Bocadillos normales, de los de bar."
     ],
     "unidad": "bocadillos",
@@ -153,8 +152,7 @@
     "estado": "verificado",
     "enunciado": "¿Cuántos días tardaría un coche en llegar a la Luna, yendo a velocidad de autopista sin parar y en línea recta?",
     "condiciones": [
-      "Velocidad constante, de día y de noche, sin paradas ni repostajes.",
-      "Distancia medida entre centros, en línea recta."
+      "Velocidad constante, de día y de noche, sin paradas ni repostajes."
     ],
     "unidad": "días",
     "referencia": 133.47,
@@ -273,7 +271,7 @@
     "historial": [],
     "enunciado": "¿Cuántas veces habría que doblar un folio por la mitad para que el taco resultante llegara a la Luna?",
     "condiciones": [
-      "Hipótesis ideal: cada doblez duplica exactamente las capas, aunque en la práctica sea imposible."
+      "Hipótesis ideal: se puede doblar siempre, aunque en la práctica sea imposible."
     ],
     "unidad": "dobleces",
     "referencia": 42,
@@ -319,8 +317,7 @@
     "estado": "secundaria",
     "enunciado": "¿Cuántas personas caben de pie en la Plaza Mayor de Madrid en un concierto muy lleno?",
     "condiciones": [
-      "Toda la plaza cuenta como útil: ignora escenario, farolas y terrazas.",
-      "De pie y apretadas, pero pudiendo respirar."
+      "Toda la plaza cuenta como útil: ignora escenario, farolas y terrazas."
     ],
     "unidad": "personas",
     "referencia": 48500,
@@ -371,7 +368,7 @@
     "historial": [],
     "enunciado": "¿Cuántas lavadoras caben en un camión tráiler?",
     "condiciones": [
-      "Lavadoras embaladas, apiladas, con la caja del camión llena.",
+      "Lavadoras embaladas y la caja del camión llena.",
       "Solo lavadoras enteras."
     ],
     "unidad": "lavadoras",
@@ -417,8 +414,7 @@
     "estado": "verificado",
     "enunciado": "Imagina que la Tierra fuese una canica. ¿A qué distancia de ella estaría la Luna, con la misma escala?",
     "condiciones": [
-      "Una canica normal, de las de jugar.",
-      "Usa la misma escala para el tamaño y para la distancia."
+      "Una canica normal, de las de jugar."
     ],
     "unidad": "centímetros",
     "referencia": 48.2,
@@ -690,7 +686,7 @@
     "estado": "verificado",
     "enunciado": "¿Cuántas Tierras caben dentro del Sol?",
     "condiciones": [
-      "Compara volúmenes, como si ambos fueran esferas perfectas.",
+      "Considera ambos como esferas perfectas.",
       "No te preocupes por los huecos entre esferas."
     ],
     "unidad": "Tierras",
@@ -792,7 +788,7 @@
     "enunciado": "¿Cuántos días tardaría una persona en dar la vuelta al mundo andando por el ecuador?",
     "condiciones": [
       "Como si todo fuera tierra firme: ignora los océanos.",
-      "Camina a un ritmo normal, con descansos y noches de sueño."
+      "Cuenta los días reales, con sus descansos."
     ],
     "unidad": "días",
     "referencia": 1145,
@@ -944,7 +940,6 @@
     "historial": [],
     "enunciado": "¿Cuántos metros de líneas hay impresas en una hoja de cuaderno cuadriculado?",
     "condiciones": [
-      "Cuenta todas las líneas, verticales y horizontales, de una hoja entera.",
       "Imagina que la cuadrícula cubre toda la hoja, sin márgenes."
     ],
     "unidad": "metros",
@@ -1082,7 +1077,7 @@
     "estado": "calculado",
     "enunciado": "¿Cuántos pasos da una persona a lo largo de toda su vida?",
     "condiciones": [
-      "Cuenta desde que echa a andar, hacia el primer año de vida, hasta el final de una vida larga."
+      "Cuenta desde que echa a andar hasta el final de una vida larga."
     ],
     "unidad": "pasos",
     "referencia": 173010000,
