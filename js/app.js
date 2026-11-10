@@ -69,11 +69,13 @@ function cabecera(hoy) {
     : `Racha: <strong>0</strong> · resuelve el reto de hoy para empezarla`;
 }
 
+const slug = (t) => t.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-');
+
 function chips(r, modo) {
   return `<div class="meta">
     <span class="chip chip--num">Reto n.º ${numero(retos, r.id)}</span>
     <span class="chip">${TIPO[r.tipo]}</span>
-    <span class="chip">${esc(r.tema)}</span>
+    <span class="chip chip--tema">${esc(r.tema)}</span>
     <span class="fecha">${esc(fechaLarga(r.fecha))}${modo === 'practica' ? ' · archivo' : ''}</span>
   </div>`;
 }
@@ -85,12 +87,14 @@ function vistaReto(r, hoy) {
   const condiciones = (r.condiciones || []).map((c) => `<li>${esc(c)}</li>`).join('');
   $main.innerHTML = `
     <article class="reto" data-reto="${esc(r.id)}">
-      ${chips(r, modoVista)}
       ${modoVista === 'practica' && !jug ? '<p class="aviso">Estás practicando con el archivo: este reto no cuenta para tu racha diaria.</p>' : ''}
       ${!almacen.persistente ? '<p class="aviso">Tu navegador no deja guardar datos: el progreso se perderá al cerrar la pestaña.</p>' : ''}
+      <div class="enunciado tema-${slug(r.tema)}">
+      ${chips(r, modoVista)}
       <h1 class="pregunta" id="pregunta" tabindex="-1">${esc(r.enunciado)}</h1>
       ${condiciones ? `<ul class="condiciones" aria-label="Condiciones">${condiciones}</ul>` : ''}
       <p class="unidad">Responde en <strong>${esc(r.unidad)}</strong>.</p>
+      </div>
       ${jug ? '' : formularioHTML(r)}
       ${jug ? '' : calculadoraHTML(borrador.calculo)}
       ${jug ? resultadoHTML(r, jug, modoVista, hoy) : ''}
@@ -253,9 +257,15 @@ function resultadoHTML(r, jug, modoVista, hoy) {
   return `
     <section class="resultado" aria-labelledby="h-res">
       <h2 id="h-res" tabindex="-1">${jug.modo === 'diario' ? 'Tu resultado' : 'Tu resultado (práctica)'}</h2>
-      <div class="puntos"><span class="num">${jug.puntuacion}</span><span class="de">/ 100</span><span class="nivel">${esc(nivel(jug.puntuacion))}</span></div>
-      <p class="frase">${esc(frase(p))}</p>
-      ${ordenes(p.factor) ? `<p class="pequeno">${esc(ordenes(p.factor))}</p>` : ''}
+      <div class="puntos">
+        <div class="anillo ${jug.puntuacion >= 85 ? 'nivel-ok' : jug.puntuacion >= 50 ? 'nivel-medio' : 'nivel-bajo'}" id="anillo" style="--p:${animar && !reducido() ? 0 : jug.puntuacion}" data-p="${jug.puntuacion}"><span class="num">${jug.puntuacion}</span><span class="de">/ 100</span></div>
+        <div>
+          <span class="nivel ${jug.puntuacion >= 85 ? 'nivel-ok' : jug.puntuacion >= 50 ? 'nivel-medio' : 'nivel-bajo'}">${esc(nivel(jug.puntuacion))}</span>
+          <p class="frase">${esc(frase(p))}</p>
+          ${ordenes(p.factor) ? `<p class="pequeno">${esc(ordenes(p.factor))}</p>` : ''}
+        </div>
+      </div>
+      ${animar && !reducido() && jug.puntuacion >= 85 ? confetiHTML() : ''}
       ${escalaHTML(v, est, v.referencia)}
       <dl class="cifras">
         <div><dt>Tu estimación</dt><dd>${esc(formatear(est, 6))}<small>${esc(r.unidad)}</small></dd></div>
@@ -296,12 +306,19 @@ function resultadoHTML(r, jug, modoVista, hoy) {
     </section>`;
 }
 
+function confetiHTML() {
+  const cols = ['var(--sol)', 'var(--acento)', 'var(--menta)', 'var(--rosa)'];
+  return `<div class="confeti" aria-hidden="true">${Array.from({ length: 22 }, (_, i) => `<i style="--x:${(i * 4.7 + 3) % 98}%;--d:${(i % 7) * 0.08}s;--c:${cols[i % 4]}"></i>`).join('')}</div>`;
+}
+
 function ligarResultado(r, jug, modoVista) {
   const titulo = document.getElementById('h-res');
   if (animar) {
     titulo.focus();
     titulo.scrollIntoView({ behavior: reducido() ? 'auto' : 'smooth', block: 'start' });
     const esc2 = document.getElementById('escala');
+    const an = document.getElementById('anillo');
+    if (!reducido()) requestAnimationFrame(() => requestAnimationFrame(() => an.style.setProperty('--p', an.dataset.p)));
     if (!esc2.classList.contains('listo')) requestAnimationFrame(() => requestAnimationFrame(() => esc2.classList.add('listo')));
   }
   const $c = document.getElementById('copiado');
@@ -330,7 +347,7 @@ function vistaArchivo(hoy) {
   const items = lista.map((r) => {
     const j = almacen.jugada(r.id);
     const est = j ? `<span class="estado estado--hecho">${j.puntuacion}/100</span>` : '<span class="estado">Sin jugar</span>';
-    return `<li><a href="#/reto/${esc(r.id)}" aria-label="Reto ${numero(retos, r.id)}, ${esc(fechaCorta(r.fecha))}, ${esc(r.tema)}, ${j ? 'puntuación ' + j.puntuacion : 'sin jugar'}">
+    return `<li><a class="tema-${slug(r.tema)}" href="#/reto/${esc(r.id)}" aria-label="Reto ${numero(retos, r.id)}, ${esc(fechaCorta(r.fecha))}, ${esc(r.tema)}, ${j ? 'puntuación ' + j.puntuacion : 'sin jugar'}">
       <span class="n">#${numero(retos, r.id)}</span>
       <span class="t">${esc(r.tema)} · ${TIPO[r.tipo]}<small>${esc(fechaCorta(r.fecha))}</small></span>${est}</a></li>`;
   }).join('');
